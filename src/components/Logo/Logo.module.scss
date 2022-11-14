@@ -1,0 +1,27 @@
+.wrapper {
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-image {
+    max-width: 5rem;
+}
+
+.logo-text {
+    font-size: 2.5rem;
+    color: var(--white);
+    text-shadow: -1px 1px 0 var(--primary-color);
+    font-weight: 700;
+
+    span {
+        color: var(--secondary-color);
+    }
+}
+
+@media (max-width: 1135px) {
+    .wrapper {
+        padding-bottom: 0;
+    }
+}

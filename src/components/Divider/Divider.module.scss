@@ -1,0 +1,15 @@
+.divider {
+    background-color: var(--white);
+
+    &.primary {
+        background-color: var(--primary-color);
+    }
+
+    &.secondary {
+        background-color: var(--secondary-color);
+    }
+
+    &.opacity {
+        opacity: 0.5;
+    }
+}

@@ -1,0 +1,16 @@
+.wrapper {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 1rem;
+    border-radius: 1rem;
+    position: relative;
+
+    &::after {
+        content: '\25BA';
+        position: absolute;
+        left: -1.2rem;
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+        color: var(--primary-color);
+    }
+}

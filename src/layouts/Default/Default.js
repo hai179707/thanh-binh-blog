@@ -1,13 +1,20 @@
-import PropTypes from 'prop-types' 
+import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
+
 import style from './Default.module.scss'
+import SideBar from '~/components/SideBar'
+import Header from '~/components/Header'
 
 const cx = classNames.bind(style)
 
 function Default({ children }) {
     return (
         <div className={cx('wrapper')}>
-            {children}
+            <SideBar />
+            <Header />
+            <div className={cx('main-container')}>
+                {children}
+            </div>
         </div>
     )
 }

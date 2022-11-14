@@ -1,2 +1,5 @@
 export { default as HomePage } from './Home'
 export { default as ChuyenChoi } from './ChuyenChoi'
+export { default as ChuyenHoc } from './ChuyenHoc'
+export { default as ChuyenLam } from './ChuyenLam'
+export { default as ChuyenSong } from './ChuyenSong'

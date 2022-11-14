@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types'
 import classNames from "classnames/bind"
-
-import styles from './MainContainer.module.scss'
+import styles from './Popper.module.scss'
 
 const cx = classNames.bind(styles)
 
-function MainContainer({ children }) {
+function Popper({ children }) {
     return (
         <div className={cx('wrapper')}>
             {children}
@@ -13,8 +12,8 @@ function MainContainer({ children }) {
     )
 }
 
-MainContainer.propTypes = {
-    children: PropTypes.node
+Popper.propTypes = {
+    children: PropTypes.node.isRequired
 }
 
-export default MainContainer
+export default Popper

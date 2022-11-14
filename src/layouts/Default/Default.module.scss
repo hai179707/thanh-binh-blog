@@ -1,0 +1,8 @@
+.wrapper {
+    display: flex;
+}
+
+.main-container {
+    margin-top: calc(var(--header-height) + 10px);
+    flex-grow: 1;
+}
