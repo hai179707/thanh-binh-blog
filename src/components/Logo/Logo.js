@@ -26,7 +26,7 @@ function Logo({ className }) {
     return (
         <Link to={config.routes.home} className={cx('wrapper', { [className]: className })}>
             <Image src={images.logoWhite} alt='logo' className={cx('logo-image')} />
-            {logoImage || <div className={cx('logo-text')}>Bình <span>Blog</span></div>}
+            {logoImage || <div className={cx('logo-text')}>Bình <span>Bờm</span></div>}
         </Link>
     )
 }

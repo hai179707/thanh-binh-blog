@@ -4,13 +4,14 @@ import styles from './Divide.module.scss'
 
 const cx = classNames.bind(styles)
 
-function Divide({ width = '100%', height = "1px", primary = false, secondary = false, opacity = false, className }) {
+function Divide({ width = '100%', height = "1px", primary = false, secondary = false, rounded = false, opacity = false, className }) {
     return (
         <div
             className={cx('divide', {
                 [className]: className,
                 primary,
                 secondary,
+                rounded,
                 opacity
             })}
             style={{ width, height }}

@@ -8,6 +8,7 @@
     --gray: #666;
     --primary-color: #0965c7;
     --secondary-color: #ffdf5f;
+    --tertiary-color: #f05123;
     --text-color: #333;
     --gradient-color: linear-gradient(#0965c7, #34aadc);
 
@@ -35,7 +36,6 @@ body {
     text-rendering: optimizeSpeed;
     color: var(--text-color);
     background-color: var(--white);
-    margin-right: 6px;
 }
 
 // scrollbar css

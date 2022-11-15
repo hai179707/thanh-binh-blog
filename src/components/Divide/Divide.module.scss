@@ -9,6 +9,10 @@
         background-color: var(--secondary-color);
     }
 
+    &.rounded {
+        border-radius: 1rem;
+    }
+
     &.opacity {
         opacity: 0.5;
     }
