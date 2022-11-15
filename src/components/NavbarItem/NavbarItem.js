@@ -30,11 +30,11 @@ function NavbarItem({ title, to, href, icon, onClick, className }) {
         <div>
             <Tippy
                 placement='right'
-                onShow={() => cancelShowOnDestop()}
+                onShow={cancelShowOnDestop}
                 delay={400}
                 render={attrs => (
                     <div tabIndex="-1" {...attrs}>
-                        <NavLinkPopper>{title}</NavLinkPopper>
+                        <NavLinkPopper right>{title}</NavLinkPopper>
                     </div>
                 )}
             >

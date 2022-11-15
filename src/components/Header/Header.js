@@ -1,9 +1,15 @@
+import Tippy from "@tippyjs/react/headless"
 import classNames from "classnames/bind"
 import { useRef, useState } from "react"
 import { RiSearch2Line, RiCloseLine, RiMessengerLine, RiPhoneLine, RiFilePaper2Line } from 'react-icons/ri'
+import { IoMdPricetag } from 'react-icons/io'
 import { Link } from "react-router-dom"
 
 import styles from './Header.module.scss'
+import { Popper as NavLinkPopper } from '../Popper'
+import Divide from "../Divide"
+import Image from "../Image"
+import images from "~/assets/images"
 
 const cx = classNames.bind(styles)
 
@@ -25,8 +31,9 @@ function Header() {
         inputRef.current.focus()
     }
 
-    const handleFocusInp = () => {
-        setIsFocus(true)
+    const cancelShowOnMobile = () => {
+        const windowWidth = window.innerWidth
+        return windowWidth >= 762
     }
 
     return (
@@ -41,7 +48,7 @@ function Header() {
                     value={searchValue}
                     placeholder='Tìm kiếm...'
                     onChange={handleChangeInp}
-                    onFocus={handleFocusInp}
+                    onFocus={() => setIsFocus(true)}
                     onBlur={() => setIsFocus(false)}
                     className={cx('search-inp')}
                 />
@@ -56,36 +63,58 @@ function Header() {
                 {isFocus &&
                     <ul className={cx('suggest')}>
                         <span className={cx('title')}>Đề xuất cho bạn</span>
-                        <div className={cx('suggest-items')}>
-                            <li className={cx('suggest-item')}>
-                                <Link to={'/'} className={cx('suggest-link')}><RiFilePaper2Line /> abcabcasdsadas</Link>
+                        <div className={cx('suggest-keyword-items')}>
+                            <li className={cx('suggest-keyword-item')}>
+                                <Link to={'/'} className={cx('suggest-keyword-link')}><RiFilePaper2Line /> abcabcasdsadas</Link>
                             </li>
-                            <li className={cx('suggest-item')}>
-                                <Link to={'/'} className={cx('suggest-link')}><RiFilePaper2Line /> abcabcasdsadas</Link>
-                            </li>
-                            <li className={cx('suggest-item')}>
-                                <Link to={'/'} className={cx('suggest-link')}><RiFilePaper2Line /> abcabcasdsadas</Link>
-                            </li>
-                            <li className={cx('suggest-item')}>
-                                <Link to={'/'} className={cx('suggest-link')}><RiFilePaper2Line /> abcabcasdsadas</Link>
-                            </li>
-                            <li className={cx('suggest-item')}>
-                                <Link to={'/'} className={cx('suggest-link')}><RiFilePaper2Line /> abcabcasdsadas</Link>
-                            </li>
-                            <li className={cx('suggest-item')}>
-                                <Link to={'/'} className={cx('suggest-link')}><RiFilePaper2Line /> abcabcasdsadas</Link>
+                        </div>
+                        <Divide opacity />
+                        <span className={cx('title')}>Gợi ý kết quả</span>
+                        <div className={cx('suggest-result-items')}>
+                            <li className={cx('suggest-result-item')}>
+                                <Link to={'/'} className={cx('suggest-result-link')}>
+                                    <div className={cx('image')}>
+                                        <Image src={images.sidebarBg} />
+                                    </div>
+                                    <div className={cx('text')}>
+                                        <div className={cx('blog-title')}>Những cái “thú” khi về quê này bạn đã biết!</div>
+                                        <div className={cx('blog-category')}><IoMdPricetag /> Chuyện làm</div>
+                                    </div>
+                                </Link>
                             </li>
                         </div>
                     </ul>
                 }
             </div>
             <ul className={cx('contact')}>
-                <li className={cx('contact-item')}>
-                    <a href='https://m.me/hai.nga.18'><RiMessengerLine /></a>
-                </li>
-                <li className={cx('contact-item')}>
-                    <a href='tel:0868902048'><RiPhoneLine /></a>
-                </li>
+                <Tippy
+                    placement='bottom'
+                    onShow={cancelShowOnMobile}
+                    delay={400}
+                    render={attrs => (
+                        <div tabIndex="-1" {...attrs}>
+                            <NavLinkPopper bottom>Messenger</NavLinkPopper>
+                        </div>
+                    )}
+                >
+                    <li className={cx('contact-item')}>
+                        <a href='https://m.me/hai.nga.18'><RiMessengerLine /></a>
+                    </li>
+                </Tippy>
+                <Tippy
+                    placement='bottom'
+                    onShow={cancelShowOnMobile}
+                    delay={400}
+                    render={attrs => (
+                        <div tabIndex="-1" {...attrs}>
+                            <NavLinkPopper bottom>Gọi</NavLinkPopper>
+                        </div>
+                    )}
+                >
+                    <li className={cx('contact-item')}>
+                        <a href='tel:0868902048'><RiPhoneLine /></a>
+                    </li>
+                </Tippy>
             </ul>
         </div>
     )

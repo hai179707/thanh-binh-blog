@@ -5,12 +5,21 @@
     border-radius: 1rem;
     position: relative;
 
-    &::after {
+    &.right::after {
         content: '\25BA';
         position: absolute;
         left: -1.2rem;
         top: 50%;
         transform: translateY(-50%) rotate(180deg);
+        color: var(--primary-color);
+    }
+
+    &.bottom::after {
+        content: '\25BA';
+        position: absolute;
+        left: 50%;
+        top: -1.5rem;
+        transform: translateX(-50%) rotate(-90deg);
         color: var(--primary-color);
     }
 }

@@ -6,7 +6,7 @@ import styles from './SideBar.module.scss'
 import Logo from "../Logo"
 import NavbarItem from "../NavbarItem"
 import config from "~/config"
-import Divider from "../Divider"
+import Divide from "../Divide"
 import images from "~/assets/images"
 import Image from "../Image"
 import { useEffect, useState } from "react"
@@ -41,7 +41,7 @@ function SideBar() {
                     <NavbarItem title="Chuyện chơi" to={config.routes.chuyenChoi} icon={<TbBeach />} onClick={() => setToggleMenu(false)} />
                     {mobile && <div className={cx('close')} onClick={() => setToggleMenu(!toggleMenu)}><RiCloseLine /></div>}
                 </div>
-                {mobile || <Divider />}
+                {mobile || <Divide />}
                 <ul className={cx('social')}>
                     <li className={cx('social-item')}>
                         <a className={cx('social-link')} href='https://www.facebook.com/hai.nga.18'><RiFacebookBoxLine /></a>
@@ -53,7 +53,7 @@ function SideBar() {
                         <a className={cx('social-link')} href='https://www.facebook.com/hai.nga.18'><TbBrandTiktok /></a>
                     </li>
                 </ul>
-                {mobile || <Divider />}
+                {mobile || <Divide />}
                 {mobile
                     &&
                     <div className={cx('toggle-nav')} onClick={() => setToggleMenu(!toggleMenu)}>

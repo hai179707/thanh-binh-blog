@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import classNames from "classnames/bind"
-import styles from './Divider.module.scss'
+import styles from './Divide.module.scss'
 
 const cx = classNames.bind(styles)
 
-function Divider({ width = '100%', height = "1px", primary = false, secondary = false, opacity = false, className }) {
+function Divide({ width = '100%', height = "1px", primary = false, secondary = false, opacity = false, className }) {
     return (
         <div
-            className={cx('divider', {
+            className={cx('divide', {
                 [className]: className,
                 primary,
                 secondary,
@@ -19,7 +19,7 @@ function Divider({ width = '100%', height = "1px", primary = false, secondary = 
     )
 }
 
-Divider.propTypes = {
+Divide.propTypes = {
     width: PropTypes.string,
     height: PropTypes.string,
     primary: PropTypes.bool,
@@ -28,4 +28,4 @@ Divider.propTypes = {
     className: PropTypes.string
 }
 
-export default Divider
+export default Divide

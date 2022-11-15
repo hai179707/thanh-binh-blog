@@ -1,9 +1,10 @@
 .wrapper {
     position: fixed;
-    left: 250px;
+    left: 240px;
     top: 0;
-    right: 1rem;
+    right: 0;
     padding-top: 1rem;
+    padding-inline: 1rem;
     height: var(--header-height);
     background-color: var(--white);
     display: flex;
@@ -83,31 +84,82 @@
         border-bottom-left-radius: 2rem;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
-        max-height: 40vh;
-        padding-block: 1rem;
+        max-height: 60vh;
+        padding-inline: 1rem;
         overflow: hidden;
 
         .title {
+            display: block;
+            margin-block: 1rem;
             color: var(--white);
             font-size: 1.5rem;
             font-weight: 600;
-            line-height: 2;
-            padding-inline: 2rem;
+            padding-inline: 1rem;
         }
 
-        .suggest-item {
-            padding: 1rem 2rem;
-            cursor: pointer;
+        .suggest-keyword-items {
+            margin-bottom: 1rem;
 
-            &:hover {
-                background-color: rgba(52, 170, 220, 0.4);
+            .suggest-keyword-item {
+                border-radius: 0.6rem;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgba(52, 170, 220, 0.4);
+                }
+
+                .suggest-keyword-link {
+                    color: var(--white);
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+                    padding: 1rem;
+                }
             }
+        }
 
-            .suggest-link {
-                color: var(--white);
-                display: flex;
-                gap: 1rem;
-                align-items: center;
+        .suggest-result-items {
+            margin-bottom: 1rem;
+
+            .suggest-result-item {
+                border-radius: 0.6rem;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgba(52, 170, 220, 0.4);
+                }
+
+                .suggest-result-link {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    padding: 1rem;
+                    color: var(--white);
+
+                    .image {
+                        width: 50px;
+                        height: 50px;
+                        min-width: 50px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                    }
+
+                    .text {
+                        flex-grow: 1;
+
+                        .blog-title {
+                            font-weight: 500;
+                        }
+
+                        .blog-category {
+                            opacity: 0.7;
+                            font-size: 1.4rem;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                        }
+                    }
+                }
             }
         }
     }
@@ -139,13 +191,17 @@
 
 @media (max-width: 1135px) {
     .wrapper {
-        left: 100px;
+        left: 90px;
+    }
+
+    .blog-title {
+        font-size: 1.4rem;
     }
 }
 
 @media (max-width: 762px) {
     .wrapper {
-        left: 1rem;
+        left: 0rem;
     }
 }
 
