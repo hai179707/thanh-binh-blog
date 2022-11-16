@@ -1,0 +1,165 @@
+.content {
+    display: flex;
+    gap: 5rem;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        margin-bottom: 1rem;
+        line-height: 1.2;
+
+        span {
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 6rem;
+            color: var(--primary-color);
+        }
+    }
+
+    .introduce-text {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .introduce {
+            flex: 1;
+
+            p {
+                font-size: 1.8rem;
+                margin-block: 1.6rem;
+            }
+        }
+
+        .maxim {
+            display: flex;
+            flex-direction: column;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--primary-color);
+
+            i {
+                color: var(--primary-color);
+                font-size: 1.8rem;
+            }
+
+            span {
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.image {
+    width: 1000px;
+
+    img {
+        border-radius: 1rem;
+    }
+}
+
+@media (max-width: 1400px) {
+    .text {
+        .introduce-text {
+            margin-top: 1rem;
+
+            .introduce {
+                p {
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1135px) {
+    .content {
+        gap: 3rem;
+    }
+
+    .text {
+        .title {
+            span {
+                font-size: 5rem;
+            }
+        }
+    }
+
+    .image {
+        width: 1135px;
+    }
+}
+
+@media (max-width: 860px) {
+    .content {
+        gap: 3rem;
+        position: relative;
+    }
+
+    .text {
+        flex: 1;
+
+        .title {
+            font-size: 3rem;
+
+            span {
+                font-size: 4rem;
+            }
+        }
+
+        .introduce-text {
+            .maxim {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                max-width: 50%;
+
+                i {
+                    line-height: 1.2;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+
+    .image {
+        flex: 1;
+    }
+}
+
+@media (max-width: 576px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .text {
+        .introduce-text {
+            .maxim {
+                position: relative;
+                max-width: 100%;
+                margin-top: 3rem;
+            }
+        }
+    }
+
+    .image {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 320px) {
+    .text {
+        flex: 1;
+
+        .title {
+            font-size: 2.8rem;
+
+            span {
+                font-size: 3.6rem;
+            }
+        }
+    }
+}

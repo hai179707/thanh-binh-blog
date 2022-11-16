@@ -1,0 +1,22 @@
+.wrapper {
+    margin-right: 1rem;
+    padding: 8rem 0 4rem;
+}
+
+@media (max-width: 1135px) {
+    .wrapper {
+        padding: 5rem 0 2rem;
+    }
+}
+
+@media (max-width: 762px) {
+    .wrapper {
+        margin-inline: 1rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .wrapper {
+        margin-left: 1rem;
+    }
+}

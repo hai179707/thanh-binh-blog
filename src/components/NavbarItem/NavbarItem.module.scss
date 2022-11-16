@@ -52,6 +52,7 @@
 @media (max-width: 762px) {
     .navbar-item {
         justify-content: center;
+        padding-left: 0;
 
         &:hover {
             padding-left: 2rem;

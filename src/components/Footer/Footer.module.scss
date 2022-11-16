@@ -1,0 +1,130 @@
+.wrapper {
+    margin-left: 260px;
+    margin-block: 4rem 1rem;
+    width: calc(100vw - 310px);
+    background-color: var(--footer-bg);
+    border-radius: 1rem;
+    display: flex;
+    gap: 5rem;
+    padding: 2rem;
+    position: relative;
+}
+
+.brand,
+.menu {
+    flex: 1;
+}
+
+.brand {
+    padding: 1rem;
+
+    .description {
+        color: var(--white);
+        margin-top: 2rem;
+        flex: 1;
+    }
+}
+
+.menu {
+    .title {
+        color: var(--white);
+        font-size: 2.2rem;
+        padding-block: 0.5rem;
+        border-bottom: 1px solid rgba($color: #fff, $alpha: 0.5);
+        margin-bottom: 1.2rem;
+        text-transform: uppercase;
+    }
+
+    .category-menu {
+        li {
+            margin-block: 1rem;
+
+            .category {
+                color: var(--white);
+                opacity: 0.7;
+            }
+
+            &:hover {
+                .category {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .social {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 2rem;
+
+        .social-link {
+            color: var(--white);
+            font-size: 2.5rem;
+            opacity: 0.7;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.copyright a {
+    position: absolute;
+    left: 3rem;
+    bottom: 3rem;
+    color: #fff;
+    font-size: 1.2rem;
+    max-width: 30%;
+}
+
+@media (max-width: 1135px) {
+    .wrapper {
+        margin-left: 120px;
+        width: calc(100vw - 170px);
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 762px) {
+    .brand {
+        display: none;
+    }
+
+    .wrapper {
+        border-radius: 0;
+        margin-inline: 0;
+        margin-bottom: 0;
+        width: 100vw;
+        padding-bottom: 140px;
+    }
+
+    .copyright a {
+        left: 50%;
+        bottom: 16rem;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .wrapper {
+        padding-bottom: 90px;
+        gap: 1rem;
+    }
+
+    .copyright a {
+        bottom: 10rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .copyright a {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+}

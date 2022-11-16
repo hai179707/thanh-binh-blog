@@ -4,7 +4,7 @@
     top: 0;
     right: 0;
     padding-top: 1rem;
-    padding-inline: 1rem;
+    padding-inline: 3rem 4rem;
     height: var(--header-height);
     background-color: var(--white);
     display: flex;
@@ -193,6 +193,7 @@
 @media (max-width: 1135px) {
     .wrapper {
         left: 90px;
+        padding-right: 5rem;
     }
 
     .blog-title {
@@ -203,10 +204,21 @@
 @media (max-width: 762px) {
     .wrapper {
         left: 0rem;
+        padding-inline: 3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .wrapper {
+        padding-inline: 2rem;
     }
 }
 
 @media (max-width: 380px) {
+    .wrapper {
+        padding-inline: 1rem;
+    }
+
     .search {
         .search-inp {
             font-size: 1.5rem;

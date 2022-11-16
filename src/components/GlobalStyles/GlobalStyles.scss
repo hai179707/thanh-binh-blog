@@ -9,6 +9,7 @@
     --primary-color: #0965c7;
     --secondary-color: #ffdf5f;
     --tertiary-color: #f05123;
+    --footer-bg: #181821;
     --text-color: #333;
     --gradient-color: linear-gradient(#0965c7, #34aadc);
 
@@ -27,6 +28,7 @@
 
 html {
     font-size: 62.5%;
+    scroll-behavior: smooth;
 }
 
 body {

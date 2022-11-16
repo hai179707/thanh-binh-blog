@@ -7,12 +7,11 @@ import Image from "~/components/Image"
 
 const cx = classNames.bind(styles)
 
-function SlideItem({ data, index }) {
+function SlideItem({ data }) {
     return (
-        <Link to={data.blogUrl} className={cx('item', `item-${index + 1}`)}>
-            <div className={cx('image')}>
+        <Link to={data.blogUrl} className={cx('item')}>
+            <div className={cx('image')} style={{ backgroundImage: `url(${data.imageUrl})` }}>
                 <div className={cx('overlay')}></div>
-                <Image src={data.imageUrl} alt='slide bg' />
             </div>
             <div className={cx('text')}>
                 <h1 className={cx('title')}>{data.title}</h1>
@@ -24,8 +23,7 @@ function SlideItem({ data, index }) {
 }
 
 SlideItem.propTypes = {
-    data: PropTypes.object.isRequired,
-    index: PropTypes.number.isRequired
+    data: PropTypes.object.isRequired
 }
 
 export default SlideItem

@@ -1,0 +1,50 @@
+.wrapper {
+    position: fixed;
+    right: -4rem;
+    bottom: 1rem;
+    background-color: var(--footer-bg);
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.8rem;
+    color: var(--white);
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.1);
+        background-color: var(--primary-color);
+    }
+
+    &.show {
+        right: 0.5rem;
+    }
+}
+
+@media (max-width: 762px) {
+    .wrapper {
+        bottom: 11rem;
+
+        &.show {
+            right: 1rem;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .wrapper {
+        bottom: 8rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .wrapper {
+        bottom: 20rem;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+}

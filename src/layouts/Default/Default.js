@@ -4,6 +4,7 @@ import classNames from 'classnames/bind'
 import style from './Default.module.scss'
 import SideBar from '~/components/SideBar'
 import Header from '~/components/Header'
+import Footer from '~/components/Footer'
 
 const cx = classNames.bind(style)
 
@@ -15,6 +16,7 @@ function Default({ children }) {
             <div className={cx('main-container')}>
                 {children}
             </div>
+            <Footer />
         </div>
     )
 }

@@ -7,7 +7,6 @@ import "swiper/css"
 import "swiper/css/pagination"
 import "swiper/css/bundle"
 
-
 import styles from './Slider.module.scss'
 import './Slider.scss'
 import SlideItem from "./SlideItem"
@@ -60,7 +59,7 @@ function Slider() {
             >
                 {data.map((slide, index) => (
                     <SwiperSlide key={index}>
-                        <SlideItem data={slide} index={index} />
+                        <SlideItem data={slide} />
                     </SwiperSlide>
                 ))}
             </Swiper>

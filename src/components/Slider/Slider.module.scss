@@ -1,8 +1,9 @@
 .wrapper {
     height: 300px;
     max-width: 100%;
+    margin-top: 2rem;
     margin-right: 1rem;
-    padding-inline: 2rem;
+    padding-right: 2rem;
     position: relative;
 }
 
@@ -21,11 +22,9 @@
 
     .image {
         height: 280px;
-        overflow: hidden;
-
-        img {
-            transform: translateY(-50%);
-        }
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .text {
@@ -76,12 +75,13 @@
 }
 
 .prev {
-    left: 0.4rem;
+    left: -1.7rem;
 }
 
 @media (max-width: 762px) {
     .wrapper {
-        margin-right: 0;
+        margin-inline: 0;
+        padding-inline: 1rem;
     }
 
     .item {

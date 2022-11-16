@@ -1,8 +1,20 @@
 .wrapper {
-    display: flex;
+    overflow-x: hidden;
 }
 
 .main-container {
     margin-top: calc(var(--header-height) + 10px);
-    flex-grow: 1;
+    margin-left: 240px;
+}
+
+@media (max-width: 1135px) {
+    .main-container {
+        margin-left: 80px;
+    }
+}
+
+@media (max-width: 762px) {
+    .main-container {
+        margin-inline: 0;
+    }
 }
