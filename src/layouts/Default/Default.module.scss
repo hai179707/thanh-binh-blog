@@ -5,6 +5,7 @@
 .main-container {
     margin-top: calc(var(--header-height) + 10px);
     margin-left: 240px;
+    min-height: calc(100vh - 362px);
 }
 
 @media (max-width: 1135px) {

@@ -1,0 +1,43 @@
+.contact {
+    display: grid;
+    font-size: 1.4rem;
+
+    & + & {
+        margin-top: 5rem;
+    }
+
+    .contact-title {
+        color: var(--gray);
+    }
+
+    .contact-info {
+        font-weight: 600;
+        font-size: 1.6rem;
+        margin-block: 0.4rem;
+    }
+
+    .contact-btn {
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+
+            .icon {
+                transition: 0.5s;
+                transform: translateX(0.5rem);
+            }
+        }
+    }
+}
+
+@media (max-width: 762px) {
+    .contact {
+        .contact-info {
+            font-size: 1.4rem;
+        }
+    }
+}

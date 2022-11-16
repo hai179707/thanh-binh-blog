@@ -4,6 +4,7 @@ import { Slider as HomeSlider } from "~/components/Slider"
 import styles from './Home.module.scss'
 import { BlogSection, Introduce } from './sections'
 import * as postList from './postList.js'
+import Contact from "./sections/Contact"
 
 const cx = classNames.bind(styles)
 
@@ -17,6 +18,7 @@ function Home() {
             <BlogSection data={postList.chuyenChoi} />
             <BlogSection data={postList.chuyenLam} />
             <BlogSection data={postList.chuyenSong} />
+            <Contact />
         </div>
     )
 }

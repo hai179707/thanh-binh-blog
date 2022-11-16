@@ -60,6 +60,16 @@
     .container {
         padding: 0;
     }
+
+    .text {
+        .title {
+            font-size: 3rem;
+        }
+
+        .see-all {
+            top: 1rem;
+        }
+    }
 }
 
 @media (max-width: 380px) {

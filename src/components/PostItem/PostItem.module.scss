@@ -93,6 +93,10 @@
     .post {
         flex: 0 0 30%;
         max-width: 30%;
+
+        &:last-child {
+            display: none;
+        }
     }
 }
 
@@ -100,6 +104,10 @@
     .post {
         flex: 0 0 45%;
         max-width: 45%;
+
+        &:last-child {
+            display: block;
+        }
     }
 }
 
