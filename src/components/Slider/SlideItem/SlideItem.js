@@ -3,7 +3,6 @@ import classNames from "classnames/bind"
 import { Link } from "react-router-dom"
 
 import styles from '../Slider.module.scss'
-import Image from "~/components/Image"
 
 const cx = classNames.bind(styles)
 
