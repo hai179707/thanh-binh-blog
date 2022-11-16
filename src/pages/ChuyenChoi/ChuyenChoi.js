@@ -1,6 +1,16 @@
+import BlogPageWrapper from "~/components/BlogPageWrapper"
+import PostItem from "~/components/PostItem"
+import { chuyenChoi } from '../postList.js'
+
 function ChuyenChoi() {
+    const { title, subtitle, full } = chuyenChoi
+
     return (
-        <h1>Chuyện chơi</h1>
+        <BlogPageWrapper title={title} subtitle={subtitle}>
+            {full.map((post, index) => (
+                <PostItem data={post} divide key={index} />
+            ))}
+        </BlogPageWrapper>
     )
 }
 

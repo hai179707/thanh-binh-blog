@@ -1,10 +1,10 @@
 import classNames from "classnames/bind"
 
 import { Slider as HomeSlider } from "~/components/Slider"
-import styles from './Home.module.scss'
 import { BlogSection, Introduce } from './sections'
-import * as postList from './postList.js'
+import * as postList from '../postList.js'
 import Contact from "./sections/Contact"
+import styles from './Home.module.scss'
 
 const cx = classNames.bind(styles)
 

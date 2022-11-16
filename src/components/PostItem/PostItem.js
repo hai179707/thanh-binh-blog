@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom'
 
 const cx = classNames.bind(styles)
 
-function PostItem({ data }) {
+function PostItem({ data, divide = false }) {
     return (
-        <div className={cx('post')}>
+        <div className={cx('post', { divide })}>
             <div className={cx('image')} style={{ backgroundImage: `url(${data.imageUrl})` }} >
                 <Link to={'/'}>
                     <div className={cx('overlay')} >
@@ -18,7 +18,11 @@ function PostItem({ data }) {
             </div>
             <div className={cx('post-text')}>
                 <Link to={'/'} className={cx('post-title')}>{data.title}</Link>
-                <p className={cx('post-date')}>{data.date}</p>
+                <div className={cx('post-detail')}>
+                    <Link to={data.category.path} className={cx('post-category')}>{data.category.title}</Link>
+                    <span>•</span>
+                    <p className={cx('post-date')}>{data.date}</p>
+                </div>
                 <p className={cx('post-description')}>{data.description}</p>
                 <Link to={'/'} className={cx('see-more-btn')}>Đọc thêm <span><RiArrowRightUpLine /></span></Link>
             </div>
@@ -27,7 +31,8 @@ function PostItem({ data }) {
 }
 
 PostItem.propTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    divide: PropTypes.bool
 }
 
 export default PostItem
