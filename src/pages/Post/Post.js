@@ -65,7 +65,7 @@ function Post() {
                             <h2 className={cx('title')}>{post.title}</h2>
                             <p className={cx('date')}>{createTime}</p>
                         </div>
-                        <div className={cx('content-area')} dangerouslySetInnerHTML={{ __html: post.content }}></div>
+                        <div className={cx('content-area')} dangerouslySetInnerHTML={{ __html: JSON.stringify(post.content) }}></div>
                         <div className={cx('tags')}>
                             <div className={cx('icon')}><IoMdPricetag /></div>
                             {post.tags.map((tag, index) => (

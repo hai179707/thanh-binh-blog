@@ -1,9 +1,9 @@
 import classNames from "classnames/bind"
+import emailjs from 'emailjs-com'
+import { RiArrowRightUpLine, RiSendPlaneLine } from "react-icons/ri"
 
 import styles from './ContactForm.module.scss'
-import { RiArrowRightUpLine, RiSendPlaneLine } from "react-icons/ri"
 import { useRef, useState } from "react"
-import emailjs from 'emailjs-com'
 
 const cx = classNames.bind(styles)
 
