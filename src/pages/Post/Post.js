@@ -20,8 +20,8 @@ function Post() {
     const [nextPost, setNextPost] = useState(currentPath)
     const [prevPost, setPrevPost] = useState(currentPath)
 
-
     useEffect(() => {
+        window.scrollTo(0, 0)
         const result = posts.find(post => post.post.path === currentPath)
         if (result) {
             setPost(result.post)
@@ -95,7 +95,7 @@ function Post() {
                             <h2 className={cx('related-title')}>Bài viết vừa xem</h2>
                             <PostGroupWrapper>
                                 {relatedPost.map((post, index) => (
-                                    <PostItem key={index} data={post} />
+                                    <PostItem key={index} data={post} onClick={() => setCurrentPath(post.path)} />
                                 ))}
                             </PostGroupWrapper>
                         </div>
