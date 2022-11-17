@@ -1,0 +1,32 @@
+.wrapper {
+    width: calc(100vw - 240px);
+    padding-inline: 4rem 10rem;
+    padding-bottom: 6rem;
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+@media (max-width: 1135px) {
+    .wrapper {
+        width: calc(100vw - 80px);
+    }
+}
+
+@media (max-width: 762px) {
+    .wrapper {
+        width: calc(100vw - 10px);
+        padding-inline: 3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .wrapper {
+        padding-inline: 2rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .wrapper {
+        padding-inline: 1rem;
+    }
+}

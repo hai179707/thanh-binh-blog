@@ -10,21 +10,21 @@ function PostItem({ data, divide = false }) {
     return (
         <div className={cx('post', { divide })}>
             <div className={cx('image')} style={{ backgroundImage: `url(${data.imageUrl})` }} >
-                <Link to={'/'}>
+                <Link to={`/post/${data.path}`}>
                     <div className={cx('overlay')} >
                         <button className={cx('overlay-btn')}>Xem bài viết</button>
                     </div>
                 </Link>
             </div>
             <div className={cx('post-text')}>
-                <Link to={'/'} className={cx('post-title')}>{data.title}</Link>
+                <Link to={`/post/${data.path}`} className={cx('post-title')}>{data.title}</Link>
                 <div className={cx('post-detail')}>
-                    <Link to={data.category.path} className={cx('post-category')}>{data.category.title}</Link>
+                    <Link to={data.category.path} className={cx('post-category')}>{data.category.name}</Link>
                     <span>•</span>
                     <p className={cx('post-date')}>{data.date}</p>
                 </div>
                 <p className={cx('post-description')}>{data.description}</p>
-                <Link to={'/'} className={cx('see-more-btn')}>Đọc thêm <span><RiArrowRightUpLine /></span></Link>
+                <Link to={`/post/${data.path}`} className={cx('see-more-btn')}>Đọc thêm <span><RiArrowRightUpLine /></span></Link>
             </div>
         </div>
     )

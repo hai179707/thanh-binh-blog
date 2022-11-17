@@ -7,137 +7,137 @@ export const chuyenChoi = {
     subtitle: 'Đi đâu cũng đc, chính mình là được!',
     suggest: [
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         }
     ],
     full: [
         {
-            path: '/',
-            title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
+            title: 'Thanh Bình và những người bạn trên đường!',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện chơi',
+                path: '/category/chuyenchoi'
             }
         }
     ]
@@ -149,137 +149,137 @@ export const chuyenSong = {
     subtitle: 'Hạnh phúc là thứ cuối cùng đáng để theo đuổi',
     suggest: [
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện sống',
-                path: '/chuyensong'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện sống',
-                path: '/chuyensong'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện sống',
-                path: '/chuyensong'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện sống',
-                path: '/chuyensong'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         }
     ],
     full: [
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện sống',
+                path: '/category/chuyensong'
             }
         }
     ]
@@ -291,137 +291,137 @@ export const chuyenHoc = {
     subtitle: 'Chỉ nên học những thứ mang lại cho ta hạnh phúc và giá trị',
     suggest: [
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện học',
-                path: '/chuyenhoc'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện học',
-                path: '/chuyenhoc'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện học',
-                path: '/chuyenhoc'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện học',
-                path: '/chuyenhoc'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         }
     ],
     full: [
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện học',
+                path: '/category/chuyenhoc'
             }
         }
     ]
@@ -433,137 +433,137 @@ export const chuyenLam = {
     subtitle: 'Làm được gì tốt hơn thì làm!',
     suggest: [
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện làm',
-                path: '/chuyenlam'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện làm',
-                path: '/chuyenlam'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện làm',
-                path: '/chuyenlam'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện làm',
-                path: '/chuyenlam'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         }
     ],
     full: [
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         },
         {
-            path: '/',
+            path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
             title: 'Bài học khởi nghiệp qua trải nghiệm leo núi.',
             description: 'Mình làm về đào tạo khởi nghiệp nên khi tham gia môn leo núi thấy có nhiều thứ khá tương đồng. Với những ai đã trải nghiệm, thử xem những điều dưới đây có đúng không nhé mọi người.',
             date: '16/11/2022',
             imageUrl: images.sidebarBg,
             category: {
-                title: 'Chuyện chơi',
-                path: '/chuyenchoi'
+                name: 'Chuyện làm',
+                path: '/category/chuyenlam'
             }
         }
     ]

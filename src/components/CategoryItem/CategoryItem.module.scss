@@ -1,0 +1,29 @@
+.wrapper {
+    flex: auto;
+    max-width: 22%;
+    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+    padding: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    .subtitle {
+        flex: 1;
+        padding-block: 0.5rem 2rem;
+    }
+}
+
+@media (max-width: 1400px) {
+    .wrapper {
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 762px) {
+}
+
+@media (max-width: 380px) {
+    .wrapper {
+        max-width: 100%;
+    }
+}

@@ -19,29 +19,9 @@
     }
 
     .see-all {
-        color: var(--primary-color);
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
         position: absolute;
         right: 0;
         top: 1.5rem;
-
-        span {
-            display: flex;
-            align-items: center;
-            transition: 0.5s;
-            font-size: 2rem;
-        }
-
-        &:hover {
-            text-decoration: underline;
-
-            span {
-                transform: translateX(0.5rem);
-            }
-        }
     }
 }
 
