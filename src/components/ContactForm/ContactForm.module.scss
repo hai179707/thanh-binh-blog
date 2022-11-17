@@ -1,6 +1,7 @@
 .form {
     flex: 3;
     padding-right: 20rem;
+    position: relative;
 
     .title {
         color: var(--primary-color);
@@ -84,6 +85,20 @@
             .send-icon {
                 transform: translate(0.5rem, -0.5rem);
             }
+        }
+    }
+
+    .message {
+        position: absolute;
+        bottom: -3rem;
+        left: 1rem;
+
+        &.success {
+            color: var(--primary-color);
+        }
+
+        &.error {
+            color: var(--tertiary-color);
         }
     }
 }
