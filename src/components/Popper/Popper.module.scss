@@ -1,25 +1,51 @@
 .wrapper {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: var(--white);
     padding: 1rem;
     border-radius: 1rem;
     position: relative;
 
-    &.right::after {
-        content: '\25BA';
-        position: absolute;
-        left: -1.2rem;
-        top: 50%;
-        transform: translateY(-50%) rotate(180deg);
-        color: var(--primary-color);
+    &.primary {
+        background-color: var(--primary-color);
+        color: var(--white);
     }
 
-    &.bottom::after {
-        content: '\25BA';
-        position: absolute;
-        left: 50%;
-        top: -1.5rem;
-        transform: translateX(-50%) rotate(-90deg);
-        color: var(--primary-color);
+    &.arrow {
+        &.primary {
+            &.right::after {
+                content: '\25BA';
+                position: absolute;
+                left: -1.2rem;
+                top: 50%;
+                transform: translateY(-50%) rotate(180deg);
+                color: var(--primary-color);
+            }
+
+            &.bottom::after {
+                content: '\25BA';
+                position: absolute;
+                left: 50%;
+                top: -1.5rem;
+                transform: translateX(-50%) rotate(-90deg);
+                color: var(--primary-color);
+            }
+        }
+
+        &.right::after {
+            content: '\25BA';
+            position: absolute;
+            left: -1.2rem;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+            color: var(--white);
+        }
+
+        &.bottom::after {
+            content: '\25BA';
+            position: absolute;
+            left: 50%;
+            top: -1.5rem;
+            transform: translateX(-50%) rotate(-90deg);
+            color: var(--white);
+        }
     }
 }

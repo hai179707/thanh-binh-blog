@@ -34,7 +34,7 @@ function NavbarItem({ title, to, href, icon, onClick, className }) {
                 delay={400}
                 render={attrs => (
                     <div tabIndex="-1" {...attrs}>
-                        <NavLinkPopper right>{title}</NavLinkPopper>
+                        <NavLinkPopper right primary>{title}</NavLinkPopper>
                     </div>
                 )}
             >

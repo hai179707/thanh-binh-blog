@@ -1,7 +1,5 @@
 const routes = {
     home: '/',
-    admin: '/admin',
-    login: '/login',
     category: '/category',
     chuyenChoi: '/category/chuyenchoi',
     chuyenSong: '/category/chuyensong',
@@ -11,6 +9,17 @@ const routes = {
     posts: '/post',
     tag: '/tag/:tagPath',
     tags: '/tag',
+    login: '/login',
+    admin: '/admin',
+    adminPost: '/admin/web/posts',
+    adminCreatePost: '/admin/web/posts/new',
+    adminUpdatePost: '/admin/web/posts/:postId',
+    adminCategory: '/admin/web/categories',
+    adminUpdateCategory: '/admin/web/categories/:categoryId',
+    adminTag: '/admin/web/tags',
+    adminContact: '/admin/contact',
+    adminMessage: '/admin/message',
+    test: '/test',
 }
 
 export default routes

@@ -93,7 +93,7 @@ function Header() {
                     delay={400}
                     render={attrs => (
                         <div tabIndex="-1" {...attrs}>
-                            <NavLinkPopper bottom>Messenger</NavLinkPopper>
+                            <NavLinkPopper bottom primary>Messenger</NavLinkPopper>
                         </div>
                     )}
                 >
@@ -107,7 +107,7 @@ function Header() {
                     delay={400}
                     render={attrs => (
                         <div tabIndex="-1" {...attrs}>
-                            <NavLinkPopper bottom>Gọi</NavLinkPopper>
+                            <NavLinkPopper bottom primary>Gọi</NavLinkPopper>
                         </div>
                     )}
                 >

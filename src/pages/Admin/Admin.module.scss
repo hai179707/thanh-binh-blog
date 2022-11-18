@@ -1,0 +1,41 @@
+.header {
+    margin-bottom: 2rem;
+}
+
+.statistical {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 5rem;
+
+    .title {
+        display: block;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    .count {
+        font-size: 6rem;
+
+        span {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-left: 1rem;
+        }
+    }
+}
+
+.newest-message {
+    .message-header {
+        display: flex;
+        padding: 1rem;
+        margin-inline: -1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+    }
+
+    .message-title {
+        flex: 1;
+        font-weight: 600;
+    }
+}

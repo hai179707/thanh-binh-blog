@@ -4,6 +4,7 @@ export const posts = [
     {
         id: 1,
         post: {
+            _id: '637651812d92875fcd1cb3d4',
             title: 'Thanh Bình và những người bạn trên đường!',
             description: 'Thanh Bình và những người bạn trên đường!',
             imageUrl: images.sidebarBg,
@@ -30,6 +31,7 @@ export const posts = [
     {
         id: 2,
         post: {
+            _id: '637651812d92875fcd1cb3d3',
             title: 'Những cái “thú” khi về quê này bạn đã biết!',
             description: 'Thanh Bình và những người bạn trên đường!',
             imageUrl: images.sidebarBg,
@@ -37,7 +39,7 @@ export const posts = [
             createAt: '2022-11-16T18:15:37.809+00:00',
             content: '<p>Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!</p>',
             category: {
-                path: '/chuyenhoc',
+                path: '/chuyenlam',
                 name: 'Chuyện làm'
             },
             tags: [
@@ -64,6 +66,7 @@ export const posts = [
     {
         id: 3,
         post: {
+            _id: '637651812d92875fcd1cb3d5',
             title: 'Suýt khỏi về nước từ Luang Prabang, Lào (phần 2)',
             description: 'Thanh Bình và những người bạn trên đường!',
             imageUrl: images.sidebarBg,
@@ -71,7 +74,7 @@ export const posts = [
             createAt: '2022-11-16T18:15:37.809+00:00',
             content: '<p>Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!</p>',
             category: {
-                path: '/chuyenhoc',
+                path: '/chuyenchoi',
                 name: 'Chuyện chơi'
             },
             tags: [

@@ -61,7 +61,7 @@ function Post() {
                 <div className={cx('wrapper')}>
                     <div className={cx('content')}>
                         <div className={cx('header')}>
-                            <Link to={post.category.path} className={cx('category')}>{post.category.name}</Link>
+                            <Link to={'/category' + post.category.path} className={cx('category')}>{post.category.name}</Link>
                             <h2 className={cx('title')}>{post.title}</h2>
                             <p className={cx('date')}>{createTime}</p>
                         </div>

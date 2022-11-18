@@ -3,10 +3,12 @@ import classNames from "classnames/bind"
 import styles from './PostItem.module.scss'
 import { RiArrowRightUpLine } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
+import useDateFormat from '~/hooks/useDateFormat'
 
 const cx = classNames.bind(styles)
 
 function PostItem({ data, divide = false, onClick }) {
+    const date = useDateFormat(data.date)
 
     return (
         <div className={cx('post', { divide })}>
@@ -22,7 +24,7 @@ function PostItem({ data, divide = false, onClick }) {
                 <div className={cx('post-detail')}>
                     <Link to={data.category.path} className={cx('post-category')}>{data.category.name}</Link>
                     <span>•</span>
-                    <p className={cx('post-date')}>{data.date}</p>
+                    <p className={cx('post-date')}>{date}</p>
                 </div>
                 <p className={cx('post-description')}>{data.description}</p>
                 <Link to={`/post/${data.path}`} className={cx('see-more-btn')} onClick={onClick}>Đọc thêm <span><RiArrowRightUpLine /></span></Link>
