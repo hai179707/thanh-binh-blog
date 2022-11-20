@@ -1,4 +1,4 @@
-const { useState, useEffect } = require("react")
+import { useEffect, useState } from "react"
 
 const useDateFormat = time => {
     const [date, setDate] = useState(time)

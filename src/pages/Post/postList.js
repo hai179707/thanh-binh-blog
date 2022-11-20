@@ -11,7 +11,7 @@ export const posts = [
             createAt: '2022-11-16T18:15:37.809+00:00',
             content: '<p>Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!</p>',
             category: {
-                path: '/chuyenhoc',
+                path: 'chuyenhoc',
                 name: 'Chuyện học'
             },
             tags: [
@@ -37,7 +37,7 @@ export const posts = [
             createAt: '2022-11-16T18:15:37.809+00:00',
             content: '<p>Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!</p>',
             category: {
-                path: '/chuyenhoc',
+                path: 'chuyenhoc',
                 name: 'Chuyện làm'
             },
             tags: [
@@ -71,7 +71,7 @@ export const posts = [
             createAt: '2022-11-16T18:15:37.809+00:00',
             content: '<p>Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!</p>',
             category: {
-                path: '/chuyenhoc',
+                path: 'chuyenhoc',
                 name: 'Chuyện chơi'
             },
             tags: [

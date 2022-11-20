@@ -1,0 +1,45 @@
+.wrapper {
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    max-width: 150px;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &.primary {
+        background-color: var(--primary-color);
+        color: var(--white);
+
+        &:hover {
+            background-color: #0253a8;
+        }
+    }
+
+    &.secondary {
+        background-color: #f05123;
+        color: var(--white);
+    }
+
+    &.outline {
+        background-color: transparent;
+        border: 1px solid;
+
+        &:hover {
+            background-color: #e7e7e7b2;
+        }
+
+        &.primary {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        &.secondary {
+            border: 1px solid #f05123;
+            color: #f05123;
+        }
+    }
+
+    &.rounded {
+        border-radius: 5rem;
+    }
+}

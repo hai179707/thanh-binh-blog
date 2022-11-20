@@ -1,7 +1,8 @@
-import routes from "./routes"
+import routes, { rootPath } from "./routes"
 
 const config = {
-    routes
+    routes,
+    rootPath
 }
 
 export default config

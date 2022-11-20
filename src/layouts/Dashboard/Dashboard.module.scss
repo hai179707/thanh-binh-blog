@@ -93,10 +93,12 @@
 .container {
     background-color: #f7f7f7;
     flex: 1;
-    min-height: 100vh;
+    height: 100vh;
     overflow-x: hidden;
+    overflow-y: scroll;
     margin-left: 240px;
     padding: 3rem;
+
     transition: 0.5s;
 }
 

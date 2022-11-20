@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 5rem;
+    gap: 2rem;
 
     .title {
         font-size: 2rem;
@@ -62,56 +62,6 @@
             background-color: #0253a8;
             transition: 0.5s;
         }
-    }
-}
-
-.post-list-header {
-    display: flex;
-    padding: 1rem 2rem;
-    margin-inline: -1rem;
-    font-size: 1.6rem;
-    border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
-
-    .header-title {
-        flex: 4;
-
-        .status {
-            font-size: 1.3rem;
-            line-height: 1.4;
-            margin-left: 0.7rem;
-
-            .publ,
-            .priv {
-                margin-left: 0.7rem;
-                padding-inline: 0.7rem;
-            }
-
-            .publ {
-                color: var(--primary-color);
-                border-left: 0.5rem solid var(--primary-color);
-            }
-
-            .priv {
-                color: rgb(170, 170, 170);
-                border-left: 0.5rem solid rgb(170, 170, 170);
-            }
-        }
-    }
-
-    .header-category,
-    .header-tags {
-        flex: 2;
-    }
-
-    .header-last-update-time {
-        flex: 1;
-        text-align: center;
-    }
-
-    .header-actions {
-        text-align: right;
-        display: flex;
-        align-items: center;
     }
 }
 
@@ -182,11 +132,144 @@
     }
 }
 
-@media (max-width: 997px) {
-    .post-list-header {
-        font-size: 1.4rem;
+.create-category-area {
+    display: flex;
+    gap: 2rem;
+    margin-block: 2rem 3rem;
+    opacity: 1;
+    transition: 0.3s;
+
+    .create-inp {
+        flex: 1;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #e7e7e7;
+        transition: 0.3s;
+
+        &:hover {
+            border: 1px solid var(--primary-color);
+        }
     }
 
+    button {
+        font-weight: 600;
+        padding: 0.8rem 1.5rem;
+        border-radius: 0.5rem;
+        user-select: none;
+        min-width: 120px;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+
+    .create-cate-btn {
+        background-color: var(--primary-color);
+        color: var(--white);
+
+        &:hover {
+            background-color: #0253a8;
+        }
+    }
+
+    .cancel-create-cate-btn {
+        background-color: #d4d3d3;
+
+        &:hover {
+            background-color: #e6e6e6;
+        }
+    }
+}
+
+.header-title {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #f7f7f7;
+    padding-bottom: 1rem;
+
+    .header-action {
+        width: 20%;
+        text-align: center;
+    }
+}
+
+.category-item {
+    border-bottom: 1px solid #f7f7f7;
+    padding-bottom: 1rem;
+}
+
+.category {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 1rem 0.5rem;
+
+    .category-title {
+        color: var(--primary-color);
+    }
+
+    .category-actions {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+
+        .update-btn {
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .delete-btn {
+            color: var(--tertiary-color);
+            cursor: pointer;
+        }
+    }
+}
+
+.update-category {
+    position: fixed;
+    inset: 0;
+    left: 240px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    &.show {
+        display: flex;
+    }
+
+    .update-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba($color: #000000, $alpha: 0.2);
+        z-index: -1;
+    }
+
+    .update-inp {
+        display: flex;
+        width: 50%;
+        background-color: var(--white);
+        padding-inline: 1rem 0;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        transition: 0.3s;
+
+        input {
+            flex: 1;
+            padding: 2rem 1rem;
+        }
+
+        button {
+            padding-inline: 2rem;
+            background-color: #e7e7e7;
+            font-weight: 600;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--primary-color);
+            }
+        }
+    }
+}
+
+@media (max-width: 997px) {
     .header {
         .create-btn {
             font-size: 1.4rem;

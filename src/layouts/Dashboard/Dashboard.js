@@ -6,7 +6,7 @@ import Logo from '~/components/Logo'
 import Divide from '~/components/Divide'
 import { NavLink } from 'react-router-dom'
 import config from '~/config'
-import { RiInformationLine, RiPagesLine } from 'react-icons/ri'
+import { RiFileCloudLine, RiInformationLine, RiPagesLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 
 const cx = classNames.bind(styles)
@@ -38,7 +38,7 @@ function Dashboard({ children }) {
                 :
                 <>
                     <div className={cx('sidebar')}>
-                        <Logo />
+                        <Logo to={config.routes.admin} />
                         <Divide />
                         <NavLink to={config.routes.admin} className={cx('sidebar-title')}>Tổng quan</NavLink>
                         <div className={cx('menu')}>
@@ -69,6 +69,17 @@ function Dashboard({ children }) {
                                 </li>
                                 <li className={cx('nav-item')}>
                                     <NavLink to={config.routes.adminMessage} className={nav => cx('nav-link', { active: nav.isActive })}>Lời nhắn</NavLink>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className={cx('menu')}>
+                            <div className={cx('header')}>
+                                <RiFileCloudLine className={cx('icon')} />
+                                <span>Tải lên</span>
+                            </div>
+                            <ul className={cx('nav-items')}>
+                                <li className={cx('nav-item')}>
+                                    <NavLink to={config.routes.adminUploadImage} className={nav => cx('nav-link', { active: nav.isActive })}>Hình ảnh</NavLink>
                                 </li>
                             </ul>
                         </div>

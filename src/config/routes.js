@@ -5,13 +5,14 @@ const routes = {
     chuyenSong: '/category/chuyensong',
     chuyenHoc: '/category/chuyenhoc',
     chuyenLam: '/category/chuyenlam',
-    post: '/post/:postPath',
-    posts: '/post',
+    post: '/posts/:postPath',
+    posts: '/posts',
     tag: '/tag/:tagPath',
     tags: '/tag',
     login: '/login',
     admin: '/admin',
     adminPost: '/admin/web/posts',
+    adminUploadImage: '/admin/upload/image',
     adminCreatePost: '/admin/web/posts/new',
     adminUpdatePost: '/admin/web/posts/:postId',
     adminCategory: '/admin/web/categories',
@@ -21,5 +22,7 @@ const routes = {
     adminMessage: '/admin/message',
     test: '/test',
 }
+
+export const rootPath = 'http://localhost:3000'
 
 export default routes

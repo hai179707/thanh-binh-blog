@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+
+    & > div {
+        background-color: rgba($color: #0965c7, $alpha: 0.1);
+        display: flex;
+        padding: 0.2rem 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .close {
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        cursor: pointer;
+    }
+}

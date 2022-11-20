@@ -21,31 +21,30 @@
         gap: 1rem;
         padding-right: 2rem;
 
+        &.priv {
+            color: var(--gray);
+        }
+
+        span {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
         .post-img {
-            width: 5rem;
-            height: 5rem;
-            min-width: 5rem;
+            width: 4rem;
+            height: 4rem;
+            min-width: 4rem;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            border-radius: 0.5rem;
         }
     }
 
     .post-category,
     .post-tags {
         flex: 2;
-    }
-
-    .post-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        font-size: 1.4rem;
-
-        span {
-            background-color: rgba($color: #0965c7, $alpha: 0.1);
-            padding: 0.2rem 0.8rem;
-        }
     }
 
     .post-last-update-time {
