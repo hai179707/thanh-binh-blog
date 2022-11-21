@@ -1,0 +1,50 @@
+.header {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5rem;
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+.content {
+    .form-group {
+        display: flex;
+        flex-wrap: wrap;
+        padding-block: 1rem;
+
+        label {
+            min-width: 120px;
+        }
+
+        .inp {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.3s;
+            flex: 1;
+
+            &:focus-within {
+                color: var(--primary-color);
+            }
+
+            input {
+                flex: 1;
+                border-bottom: 1px solid #e7e7e7;
+
+                &:focus {
+                    transition: 0.3s;
+                    border-bottom: 1px solid var(--primary-color);
+                }
+            }
+        }
+    }
+}
+
+.save-btn {
+    margin-top: 2rem;
+    min-width: 120px;
+}

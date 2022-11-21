@@ -103,7 +103,7 @@ function AdminCategory() {
                 <LayoutCard>
                     <div className={cx('header-title')}>
                         <span>Danh mục</span>
-                        <span className={cx('header-action')}>Danh mục</span>
+                        <span className={cx('header-action')}>Actions</span>
                     </div>
                     {categories.map((category, index) => (
                         <div key={index} className={cx('category-item')}>

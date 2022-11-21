@@ -42,4 +42,9 @@
     &.rounded {
         border-radius: 5rem;
     }
+
+    &.disable {
+        pointer-events: none;
+        opacity: 0.5;
+    }
 }

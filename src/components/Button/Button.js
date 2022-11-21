@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const cx = classNames.bind(styles)
 
-function Button({ to, href, title, children, primary = false, secondary = false, rounded = false, outline = false, className, onClick }) {
+function Button({ to, href, title, children, primary = false, disable = false, secondary = false, rounded = false, outline = false, className, onClick }) {
     let Comp = 'button'
     const props = {
         onClick
@@ -26,7 +26,8 @@ function Button({ to, href, title, children, primary = false, secondary = false,
         primary,
         secondary,
         rounded,
-        outline
+        outline,
+        disable
     }
 
     return (
@@ -40,6 +41,7 @@ Button.propTypes = {
     title: PropTypes.string,
     children: PropTypes.node,
     primary: PropTypes.bool,
+    disable: PropTypes.bool,
     secondary: PropTypes.bool,
     rounded: PropTypes.bool,
     outline: PropTypes.bool,
