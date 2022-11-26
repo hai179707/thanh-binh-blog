@@ -8,7 +8,7 @@ import { useDateFormat } from '~/hooks'
 const cx = classNames.bind(styles)
 
 function PostItem({ data, divide = false, onClick }) {
-    const date = useDateFormat(data.date)
+    const date = useDateFormat(data.createAt)
 
     return (
         <div className={cx('post', { divide })}>

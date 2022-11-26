@@ -4,6 +4,7 @@
 }
 
 .text {
+    flex: 1;
     display: flex;
     flex-direction: column;
 
@@ -54,7 +55,8 @@
 }
 
 .image {
-    width: 1000px;
+    flex: 1;
+    max-width: 500px;
 
     img {
         border-radius: 1rem;
@@ -110,39 +112,15 @@
             }
         }
 
-        .introduce-text {
-            .maxim {
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                max-width: 50%;
-
-                i {
-                    line-height: 1.2;
-                    margin-bottom: 1rem;
-                }
-            }
+        .image {
+            flex: 1;
         }
-    }
-
-    .image {
-        flex: 1;
     }
 }
 
 @media (max-width: 576px) {
     .content {
         flex-direction: column;
-    }
-
-    .text {
-        .introduce-text {
-            .maxim {
-                position: relative;
-                max-width: 100%;
-                margin-top: 3rem;
-            }
-        }
     }
 
     .image {

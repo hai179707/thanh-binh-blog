@@ -19,6 +19,7 @@ const routes = {
     adminUpdateCategory: '/admin/web/categories/:categoryId',
     adminTag: '/admin/web/tags',
     adminContact: '/admin/contact',
+    adminAbout: '/admin/about',
     adminMessage: '/admin/message',
     test: '/test',
 }

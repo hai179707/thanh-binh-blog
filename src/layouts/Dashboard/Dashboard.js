@@ -65,6 +65,9 @@ function Dashboard({ children }) {
                             </div>
                             <ul className={cx('nav-items')}>
                                 <li className={cx('nav-item')}>
+                                    <NavLink to={config.routes.adminAbout} className={nav => cx('nav-link', { active: nav.isActive })}>Về bản thân</NavLink>
+                                </li>
+                                <li className={cx('nav-item')}>
                                     <NavLink to={config.routes.adminContact} className={nav => cx('nav-link', { active: nav.isActive })}>Liên hệ của tôi</NavLink>
                                 </li>
                                 <li className={cx('nav-item')}>

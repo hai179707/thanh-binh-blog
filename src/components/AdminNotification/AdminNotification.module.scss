@@ -1,0 +1,17 @@
+.wrapper {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--black);
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+
+    &.success {
+        color: var(--white);
+    }
+
+    &.error {
+        color: #eb4c42;
+    }
+}

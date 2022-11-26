@@ -25,8 +25,6 @@ function Post() {
         const result = posts.find(post => post.post.path === currentPath)
         if (result) {
             setPost(result.post)
-            const create = new Date(result.post.createAt)
-            setCreateTime(`${create.getDate()}/${create.getMonth() + 1}/${create.getFullYear()}`)
 
             let related = []
             relatedPost.some(post => post.path === result.post.path)
@@ -42,15 +40,21 @@ function Post() {
             setRelatedPost(related)
 
             localStorage.setItem('relatedPost', JSON.stringify(relatedPost))
+
+            const nextPost = posts.find(post => post.id === result.id + 1)
+            if (nextPost) setNextPost(nextPost.post.path)
+
+            const prevPost = posts.find(post => post.id === result.id - 1)
+            if (prevPost) setPrevPost(prevPost.post.path)
         }
-
-        const nextPost = posts.find(post => post.id === result.id + 1)
-        if (nextPost) setNextPost(nextPost.post.path)
-
-        const prevPost = posts.find(post => post.id === result.id - 1)
-        if (prevPost) setPrevPost(prevPost.post.path)
     }, [currentPath, relatedPost])
 
+    useEffect(() => {
+        if (post) {
+            const create = new Date(post.createAt)
+            setCreateTime(`${create.getDate()}/${create.getMonth() + 1}/${create.getFullYear()}`)
+        }
+    }, [post])
 
     return (
         <PostWrapper>
@@ -65,7 +69,7 @@ function Post() {
                             <h2 className={cx('title')}>{post.title}</h2>
                             <p className={cx('date')}>{createTime}</p>
                         </div>
-                        <div className={cx('content-area')} dangerouslySetInnerHTML={{ __html: JSON.stringify(post.content) }}></div>
+                        <div className={cx('content-area')} dangerouslySetInnerHTML={{ __html: post.content }}></div>
                         <div className={cx('tags')}>
                             <div className={cx('icon')}><IoMdPricetag /></div>
                             {post.tags.map((tag, index) => (
@@ -75,14 +79,14 @@ function Post() {
                     </div>
                     <div className={cx('navigation')}>
                         <Link
-                            to={`/post/${prevPost}`}
+                            to={`/posts/${prevPost}`}
                             className={cx('prev', { disable: prevPost === currentPath })}
                             onClick={() => setCurrentPath(prevPost)}
                         >
                             <span><RiArrowLeftLine /></span><span>Bài trước</span>
                         </Link>
                         <Link
-                            to={`/post/${nextPost}`}
+                            to={`/posts/${nextPost}`}
                             className={cx('next', { disable: nextPost === currentPath })}
                             onClick={() => setCurrentPath(nextPost)}
                         >

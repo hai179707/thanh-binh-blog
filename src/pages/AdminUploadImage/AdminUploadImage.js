@@ -1,6 +1,6 @@
 import classNames from "classnames/bind"
 import { useEffect, useRef, useState } from "react"
-import { RiAddCircleLine, RiCloseCircleFill, RiDownload2Line, RiSearch2Line, RiUpload2Line, RiUploadLine } from "react-icons/ri"
+import { RiAddCircleLine, RiCloseCircleFill, RiDownload2Line, RiSearch2Line, RiUploadLine } from "react-icons/ri"
 import { MdOutlineContentCopy } from "react-icons/md"
 import { HiOutlineTrash } from "react-icons/hi"
 import images from "~/assets/images"
@@ -11,7 +11,6 @@ import CopyToClipboard from "react-copy-to-clipboard"
 import config from "~/config"
 import Modal from "~/components/Modal"
 import { useModal } from "~/hooks"
-import Image from "~/components/Image"
 
 const cx = classNames.bind(styles)
 
@@ -20,12 +19,14 @@ function AdminUploadImage() {
     const [copied, setCopied] = useState(false)
     // const [currId, setCurrId] = useState(0)
     const [image, setImage] = useState('')
+    // eslint-disable-next-line
     const [imageFile, setImageFile] = useState()
 
     const { isShowing, toggle } = useModal()
     const { isShowing: isUpLoadShowing, toggle: uploadToggle } = useModal()
 
     const filterInp = useRef()
+    const form = useRef()
 
     useEffect(() => {
         setTimeout(() => {
@@ -68,9 +69,19 @@ function AdminUploadImage() {
         }
     }
 
-    const handleSaveImage = () => {
-        uploadToggle()
-        setImage('')
+    const handleSubmitForm = (e) => {
+        e.preventDefault()
+        fetch('http://localhost:8000/api/upload', {
+            body: new FormData(e.target),
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     }
 
     return (
@@ -103,7 +114,7 @@ function AdminUploadImage() {
                             <th></th>
                             <th>Tên hình ảnh</th>
                             <th>Ngày tạo</th>
-                            <th>Đường dẫn</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -137,7 +148,7 @@ function AdminUploadImage() {
             >
                 <div className={cx('modal-content')}>
                     <div className={cx('image')}>
-                        <img src={images.sidebarBg} />
+                        <img src={images.sidebarBg} alt='' />
                     </div>
                     <div className={cx('modal-text')}>
                         <div className={cx('left')}>
@@ -155,27 +166,29 @@ function AdminUploadImage() {
                 hide={uploadToggle}
             >
                 <div className={cx('modal-content')}>
-                    <div className={cx('upload-image')}>
-                        {image
-                            ?
-                            <>
-                                <div className={cx('choosen-image')} style={{ backgroundImage: `url(${image})` }}>
-                                </div>
-                                <div className={cx('action-image')}>
-                                    <div className={cx('save-image')} onClick={handleSaveImage}>Lưu</div>
-                                    <label htmlFor="choose-image-inp" className={cx('change-image')}>Ảnh khác</label>
-                                </div>
-                            </>
-                            :
-                            <>
-                                <label htmlFor="choose-image-inp" className={cx('choose-image-label')}>
-                                    <RiUploadLine className={cx('choose-image-icon')} />
-                                    <div className={cx('choose-image-btn')}>Thêm hình ảnh</div>
-                                </label>
-                            </>
-                        }
-                        <input type='file' id='choose-image-inp' className={cx('choose-image-inp')} onChange={handlePreviewImage} onClick={e => e.target.value = ''} />
-                    </div>
+                    <form ref={form} onSubmit={handleSubmitForm}>
+                        <div className={cx('upload-image')}>
+                            {image
+                                ?
+                                <>
+                                    <div className={cx('choosen-image')} style={{ backgroundImage: `url(${image})` }}>
+                                    </div>
+                                    <div className={cx('action-image')}>
+                                        <button className={cx('save-image')} type='submit'>Lưu</button>
+                                        <label htmlFor="choose-image-inp" className={cx('change-image')}>Ảnh khác</label>
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <label htmlFor="choose-image-inp" className={cx('choose-image-label')}>
+                                        <RiUploadLine className={cx('choose-image-icon')} />
+                                        <div className={cx('choose-image-btn')}>Thêm hình ảnh</div>
+                                    </label>
+                                </>
+                            }
+                            <input type='file' name="image" id='choose-image-inp' className={cx('choose-image-inp')} onChange={handlePreviewImage} onClick={e => e.target.value = ''} />
+                        </div>
+                    </form>
                 </div>
             </Modal>
         </div>

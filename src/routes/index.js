@@ -27,6 +27,7 @@ const privateRoutes = [
     { path: config.routes.adminTag, component: pages.AdminTag, layout: layouts.Dashboard },
     { path: config.routes.adminContact, component: pages.AdminContact, layout: layouts.Dashboard },
     { path: config.routes.adminMessage, component: pages.AdminMessage, layout: layouts.Dashboard },
+    { path: config.routes.adminAbout, component: pages.AdminAbout, layout: layouts.Dashboard },
     { path: config.routes.adminUploadImage, component: pages.AdminUploadImage, layout: layouts.Dashboard },
 ]
 

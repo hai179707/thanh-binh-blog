@@ -5,10 +5,14 @@ import { BlogSection, Introduce } from './sections'
 import * as postList from '../postList.js'
 import Contact from "./sections/Contact"
 import styles from './Home.module.scss'
+import { useEffect } from "react"
 
 const cx = classNames.bind(styles)
 
 function Home() {
+    useEffect(() => {
+        console.log('Github: https://github.com/hai179707/thanh-binh-blog')
+    }, [])
     return (
         <div className={cx('wrapper')}>
             <HomeSlider />
