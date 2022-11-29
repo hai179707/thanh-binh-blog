@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react'
 import classNames from "classnames/bind"
 import { Link } from "react-router-dom"
 import { RiFacebookBoxLine, RiInstagramLine, RiMessengerLine, RiPhoneLine } from "react-icons/ri"
@@ -5,30 +7,22 @@ import { TbBrandTiktok } from "react-icons/tb"
 
 import Logo from "~/components/Logo"
 import styles from './Footer.module.scss'
-import config from "~/config"
 import GoToTop from "../GoToTop"
+import { getCategory } from '~/services/categoryServices.js'
 
 const cx = classNames.bind(styles)
 
-function Footer() {
-    const categoryList = [
-        {
-            path: config.routes.chuyenChoi,
-            title: 'Chuyện Chơi'
-        },
-        {
-            path: config.routes.chuyenHoc,
-            title: 'Chuyện Học'
-        },
-        {
-            path: config.routes.chuyenLam,
-            title: 'Chuyện Làm'
-        },
-        {
-            path: config.routes.chuyenSong,
-            title: 'Chuyện Sống'
+function Footer({ contact }) {
+    const [categories, setCategories] = useState([])
+    const { facebook, instagram, tiktok, messenger, phone } = contact
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await getCategory()
+            setCategories(result)
         }
-    ]
+        fetchApi()
+    }, [])
 
     return (
         <div className={cx('wrapper')}>
@@ -41,8 +35,8 @@ function Footer() {
                     Chuyên mục
                 </h1>
                 <ul className={cx('category-menu')}>
-                    {categoryList.map((category, index) => (
-                        <li key={index}><Link to={category.path} className={cx('category')} >{category.title}</Link></li>
+                    {categories.map((category, index) => (
+                        <li key={index}><Link to={`/category/${category.path}`} className={cx('category')} >{category.name}</Link></li>
                     ))}
                 </ul>
             </div>
@@ -52,19 +46,19 @@ function Footer() {
                 </h1>
                 <ul className={cx('social')}>
                     <li className={cx('social-item')}>
-                        <a className={cx('social-link')} href='https://www.facebook.com/hai.nga.18'><RiFacebookBoxLine /></a>
+                        <a className={cx('social-link')} href={`https://www.facebook.com/${facebook}`}><RiFacebookBoxLine /></a>
                     </li>
                     <li className={cx('social-item')}>
-                        <a className={cx('social-link')} href='https://www.facebook.com/hai.nga.18'><RiInstagramLine /></a>
+                        <a className={cx('social-link')} href={`https://www.instagram.com/${instagram}`}><RiInstagramLine /></a>
                     </li>
                     <li className={cx('social-item')}>
-                        <a className={cx('social-link')} href='https://www.facebook.com/hai.nga.18'><TbBrandTiktok /></a>
+                        <a className={cx('social-link')} href={`https://www.tiktok.com/@${tiktok}`}><TbBrandTiktok /></a>
                     </li>
                     <li className={cx('social-item')}>
-                        <a className={cx('social-link')} href='https://m.me/hai.nga.18'><RiMessengerLine /></a>
+                        <a className={cx('social-link')} href={`https://m.me/${messenger}`}><RiMessengerLine /></a>
                     </li>
                     <li className={cx('social-item')}>
-                        <a className={cx('social-link')} href='tel:0868902048'><RiPhoneLine /></a>
+                        <a className={cx('social-link')} href={`tel:${phone}`}><RiPhoneLine /></a>
                     </li>
                 </ul>
             </div>
@@ -72,6 +66,10 @@ function Footer() {
             <p className={cx('copyright')}><a href="https://www.facebook.com/ngthanhhai.1707">Copyright © 2022. Design by Thanh Hai</a></p>
         </div>
     )
+}
+
+Footer.propTypes = {
+    contact: PropTypes.object
 }
 
 export default Footer

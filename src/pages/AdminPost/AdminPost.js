@@ -1,5 +1,5 @@
 import classNames from "classnames/bind"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { RiAddCircleLine, RiCloseCircleFill, RiMoreLine, RiSearch2Line } from "react-icons/ri"
 import { Link } from "react-router-dom"
 import AdminPageAndLimitControl from "~/components/AdminPageAndLimitControl"
@@ -8,18 +8,40 @@ import AdminPostListItem from "~/components/AdminPostListItem"
 import LayoutCard from "~/components/LayoutCard"
 import config from "~/config"
 import styles from './AdminPost.module.scss'
-import { posts } from "./postList"
+import * as postServices from '~/services/postServices.js'
+import { useDebounce } from "~/hooks"
 
 const cx = classNames.bind(styles)
 
 function AdminPost() {
     const [filterValue, setFilterValue] = useState('')
+    const [posts, setPosts] = useState([])
+    const [limit, setLimit] = useState(20)
+    const [page, setPage] = useState(1)
 
     const filterInp = useRef()
 
+    const debouncedValue = useDebounce(filterValue, 500)
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await postServices.getAllPost(page, limit)
+            setPosts(result)
+        }
+        fetchApi()
+    }, [page, limit])
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await postServices.getAllPost(page, limit, debouncedValue)
+            setPosts(result)
+        }
+        fetchApi()
+    }, [debouncedValue])
+
     const handleFilterInpChange = e => {
         setFilterValue(e.target.value)
-        // Logic filter sử dung hook debounce
+
     }
 
     const handleClearFilterInp = () => {
@@ -64,12 +86,16 @@ function AdminPost() {
                         <div className={cx('header-actions')}><RiMoreLine /></div>
                     </div>
                     <div className={cx('content')}>
-                        {posts.data.map((post, index) => (
-                            <AdminPostListItem data={post.post} key={index} />
+                        {posts.map(post => (
+                            <AdminPostListItem data={post} key={post._id} />
                         ))}
                     </div>
                 </LayoutCard>
-                <AdminPageAndLimitControl />
+                <AdminPageAndLimitControl
+                    nextPage={() => setPage(page + 1)}
+                    prevPage={() => setPage(page - 1)}
+                    setLimit={l => setLimit(l)}
+                />
             </div>
         </div>
     )

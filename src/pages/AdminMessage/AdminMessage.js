@@ -1,19 +1,30 @@
 import classNames from "classnames/bind"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { RiCloseCircleFill, RiSearch2Line } from "react-icons/ri"
 
 import MessageItem from "~/components/MessageItem"
 import LayoutCard from "~/components/LayoutCard"
 import styles from './AdminMessage.module.scss'
-import { messages } from "./messageData.js"
 import AdminPageAndLimitControl from "~/components/AdminPageAndLimitControl"
+import * as messageService from '~/services/messageServices.js'
 
 const cx = classNames.bind(styles)
 
 function AdminMessage() {
     const [filterValue, setFilterValue] = useState('')
+    const [messages, setMessages] = useState([])
+    const [limit, setLimit] = useState(20)
+    const [page, setPage] = useState(1)
 
     const filterInp = useRef()
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await messageService.getMessage(page, limit)
+            setMessages(result)
+        }
+        fetchApi()
+    }, [page, limit])
 
     const handleFilterInpChange = e => {
         setFilterValue(e.target.value)
@@ -53,7 +64,11 @@ function AdminMessage() {
                         ))}
                     </div>
                 </LayoutCard>
-                <AdminPageAndLimitControl />
+                <AdminPageAndLimitControl
+                    nextPage={() => setPage(page + 1)}
+                    prevPage={() => setPage(page - 1)}
+                    setLimit={l => setLimit(l)}
+                />
             </div>
         </div>
     )

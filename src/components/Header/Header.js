@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types'
 import Tippy from "@tippyjs/react/headless"
 import classNames from "classnames/bind"
-import { useRef, useState } from "react"
-import { RiSearch2Line, RiCloseLine, RiMessengerLine, RiPhoneLine, RiFilePaper2Line } from 'react-icons/ri'
+import { useEffect, useRef, useState } from "react"
+import { RiSearch2Line, RiCloseLine, RiMessengerLine, RiPhoneLine } from 'react-icons/ri'
 import { IoMdPricetag } from 'react-icons/io'
 import { Link } from "react-router-dom"
 
@@ -9,21 +10,47 @@ import styles from './Header.module.scss'
 import { Popper as NavLinkPopper } from '../Popper'
 import Divide from "../Divide"
 import Image from "../Image"
-import images from "~/assets/images"
+import { useDebounce } from '~/hooks'
+import * as searchService from '~/services/searchServices.js'
 
 const cx = classNames.bind(styles)
 
-function Header() {
+function Header({ contact }) {
     const [searchValue, setSearchValue] = useState('')
-    const [isFocus, setIsFocus] = useState(false)
+    const [showResult, setShowResult] = useState(false)
+    const [searchResult, setSearchResult] = useState([])
 
     const inputRef = useRef()
+
+    const { messenger, phone } = contact
+
+    const debouncedValue = useDebounce(searchValue, 1000)
+
+    useEffect(() => {
+        if (!debouncedValue.trim()) {
+            setSearchResult([])
+            return
+        }
+
+        const fetchApi = async () => {
+            const result = await searchService.search(debouncedValue)
+            setSearchResult(result)
+        }
+        fetchApi()
+    }, [debouncedValue])
+
 
     const handleChangeInp = e => {
         const searchValue = e.target.value
         if (!searchValue.startsWith(' ')) {
             setSearchValue(searchValue)
         }
+    }
+
+    const handleHideResult = () => {
+        setTimeout(() => {
+            setShowResult(false)
+        }, 200)
     }
 
     const handleClear = () => {
@@ -38,18 +65,18 @@ function Header() {
 
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('search', { inpFocus: isFocus })}>
+            <div className={cx('search', { inpFocus: showResult })}>
                 <button className={cx('searh-btn')}>
                     <RiSearch2Line />
                 </button>
-                {isFocus && <div className={cx('divide')}></div>}
+                {showResult && <div className={cx('divide')}></div>}
                 <input
                     ref={inputRef}
                     value={searchValue}
                     placeholder='Tìm kiếm...'
                     onChange={handleChangeInp}
-                    onFocus={() => setIsFocus(true)}
-                    onBlur={() => setIsFocus(false)}
+                    onFocus={() => setShowResult(true)}
+                    onBlur={handleHideResult}
                     className={cx('search-inp')}
                 />
                 {searchValue && (
@@ -60,29 +87,35 @@ function Header() {
                         <RiCloseLine />
                     </span>
                 )}
-                {isFocus &&
+                {showResult &&
                     <ul className={cx('suggest')}>
-                        <span className={cx('title')}>Đề xuất cho bạn</span>
-                        <div className={cx('suggest-keyword-items')}>
+                        <span className={cx('title')}>Kết quả tìm kiếm</span>
+                        {/* <div className={cx('suggest-keyword-items')}>
                             <li className={cx('suggest-keyword-item')}>
                                 <Link to={'/'} className={cx('suggest-keyword-link')}><RiFilePaper2Line /> abcabcasdsadas</Link>
                             </li>
-                        </div>
-                        <Divide opacity />
-                        <span className={cx('title')}>Gợi ý kết quả</span>
-                        <div className={cx('suggest-result-items')}>
-                            <li className={cx('suggest-result-item')}>
-                                <Link to={'/'} className={cx('suggest-result-link')}>
-                                    <div className={cx('image')}>
-                                        <Image src={images.sidebarBg} />
-                                    </div>
-                                    <div className={cx('text')}>
-                                        <div className={cx('blog-title')}>Những cái “thú” khi về quê này bạn đã biết!</div>
-                                        <div className={cx('blog-category')}><IoMdPricetag /> Chuyện làm</div>
-                                    </div>
-                                </Link>
-                            </li>
-                        </div>
+                        </div> */}
+                        {searchResult.length > 0 &&
+                            <>
+                                <Divide opacity />
+                                <span className={cx('title')}>Gợi ý kết quả</span>
+                                <div className={cx('suggest-result-items')}>
+                                    {searchResult.map((post, index) => (
+                                        <li key={index} className={cx('suggest-result-item')}>
+                                            <Link to={`/posts/${post.path}`} className={cx('suggest-result-link')}>
+                                                <div className={cx('image')}>
+                                                    <Image src={post.imageUrl} />
+                                                </div>
+                                                <div className={cx('text')}>
+                                                    <div className={cx('blog-title')}>{post.title}</div>
+                                                    <div className={cx('blog-category')}><IoMdPricetag /> {post.category.name}</div>
+                                                </div>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </div>
+                            </>
+                        }
                     </ul>
                 }
             </div>
@@ -98,7 +131,7 @@ function Header() {
                     )}
                 >
                     <li className={cx('contact-item')}>
-                        <a href='https://m.me/hai.nga.18'><RiMessengerLine /></a>
+                        <a href={`https://m.me/${messenger}`}><RiMessengerLine /></a>
                     </li>
                 </Tippy>
                 <Tippy
@@ -112,12 +145,16 @@ function Header() {
                     )}
                 >
                     <li className={cx('contact-item')}>
-                        <a href='tel:0868902048'><RiPhoneLine /></a>
+                        <a href={`tel:${phone}`}><RiPhoneLine /></a>
                     </li>
                 </Tippy>
             </ul>
         </div>
     )
+}
+
+Header.propTypes = {
+    contact: PropTypes.object
 }
 
 export default Header

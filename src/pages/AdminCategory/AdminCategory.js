@@ -3,71 +3,32 @@ import { useEffect, useRef, useState } from "react"
 import LayoutCard from "~/components/LayoutCard"
 import { useStringToPath } from "~/hooks"
 import styles from './AdminCategory.module.scss'
+import * as categoryService from '~/services/categoryServices.js'
 
 const cx = classNames.bind(styles)
 
-const categoriesArr = [
-    {
-        _id: '1',
-        path: 'chuyenchoi',
-        name: 'Chuyện chơi'
-    },
-    {
-        _id: '2',
-        path: 'chuyenhoc',
-        name: 'Chuyện học'
-    },
-    {
-        _id: '3',
-        path: 'chuyensong',
-        name: 'Chuyện sống'
-    },
-    {
-        _id: '4',
-        path: 'chuyenlam',
-        name: 'Chuyện làm'
-    }
-]
-
 function AdminCategory() {
-    const [categories, setCategories] = useState(categoriesArr)
-    const [createValue, setCreateValue] = useState('')
+    const [categories, setCategories] = useState([])
     const [updateCateInp, setUpdateCateInp] = useState(false)
     const [updateValue, setUpdateValue] = useState('')
     const [currentCate, setCurrentCate] = useState(0)
+    const [reload, setReload] = useState(false)
 
-    const createInp = useRef()
     const updateRef = useRef()
 
-    const { path: pathCreate, setPath: setPathCreate } = useStringToPath(createValue)
     const { path: pathUpdate, setPath: setPathUpdate } = useStringToPath(updateValue)
 
     useEffect(() => {
-        setPathCreate(createValue)
-    }, [createValue, setPathCreate])
+        const fetchApi = async () => {
+            const categoryRes = await categoryService.getCategory()
+            setCategories(categoryRes)
+        }
+        fetchApi()
+    }, [reload])
 
     useEffect(() => {
         setPathUpdate(updateValue)
     }, [updateValue, setPathUpdate])
-
-    const handleCreateCategory = () => {
-        if (createValue) {
-            const newCategory = {
-                path: pathCreate,
-                name: createValue
-            }
-            setCategories(prev => [newCategory, ...prev])
-            setCreateValue('')
-        }
-    }
-
-    const handleDeleteCategoryClick = (id, name) => {
-        const confirm = window.confirm(`Bạn có chắc chắn muốn xóa danh mục: ${name}`)
-        if (confirm) {
-            categories.splice(id, 1)
-            setCategories([...categories])
-        }
-    }
 
     const handleUpdateCategoryClick = (id, name) => {
         setUpdateCateInp(true)
@@ -77,9 +38,14 @@ function AdminCategory() {
     }
 
     const handleUpdateCategory = () => {
-        categories[currentCate].name = updateValue
-        categories[currentCate].path = pathUpdate
-        setCategories([...categories])
+        const fetchApi = async () => {
+            await categoryService.updateCategory(currentCate, {
+                name: updateValue,
+                path: pathUpdate
+            })
+        }
+        fetchApi()
+        setReload(!reload)
         setUpdateCateInp(false)
     }
 
@@ -87,17 +53,6 @@ function AdminCategory() {
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <h1 className={cx('title')}>Danh sách danh mục</h1>
-            </div>
-            <div className={cx('create-category-area')}>
-                <input
-                    ref={createInp}
-                    type='text'
-                    placeholder='Nhập tên danh mục'
-                    value={createValue}
-                    onChange={e => setCreateValue(e.target.value)}
-                    className={cx('create-inp')}
-                />
-                <button className={cx('create-cate-btn')} onClick={handleCreateCategory}>Tạo mới</button>
             </div>
             <div className={cx('categories')}>
                 <LayoutCard>
@@ -110,8 +65,7 @@ function AdminCategory() {
                             <div className={cx('category')}>
                                 <span className={cx('category-title')}>{category.name}</span>
                                 <div className={cx('category-actions')}>
-                                    <span className={cx('update-btn')} onClick={() => handleUpdateCategoryClick(index, category.name)}>Sửa</span>
-                                    <span className={cx('delete-btn')} onClick={() => handleDeleteCategoryClick(index, category.name)}>Xóa</span>
+                                    <span className={cx('update-btn')} onClick={() => handleUpdateCategoryClick(category._id, category.name)}>Sửa</span>
                                 </div>
                             </div>
                         </div>

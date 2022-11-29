@@ -1,36 +1,46 @@
 import classNames from "classnames/bind"
 import { useEffect, useState } from "react"
-import { RiFacebookFill, RiInstagramLine, RiPhoneLine } from "react-icons/ri"
+import { RiFacebookFill, RiInstagramLine, RiMessengerLine, RiPhoneLine } from "react-icons/ri"
 import { TbBrandTiktok } from "react-icons/tb"
 import Button from "~/components/Button"
 import LayoutCard from "~/components/LayoutCard"
 import styles from './AdminContact.module.scss'
+import * as contactServices from '~/services/contactServices.js'
+import AdminNotification from "~/components/AdminNotification"
 
 const cx = classNames.bind(styles)
-
-const contact = {
-    phone: '0868902048',
-    facebook: 'hai.nga.18',
-    instagram: 'hai.nga.18',
-    tiktok: 'hai.nga.18',
-}
 
 function AdminContact() {
     const [phoneInpValue, setPhoneInpValue] = useState('')
     const [facebookInpValue, setFacebookInpValue] = useState('')
+    const [messengerInpValue, setMessengerInpValue] = useState('')
     const [instaInpValue, setInstaInpValue] = useState('')
     const [tiktokInpValue, setTiktokInpValue] = useState('')
     const [somethingChange, setSomethingChange] = useState(false)
     const [updateData] = useState({})
+    const [message, setMessage] = useState('')
+    const [notificationType, setNotificationType] = useState('')
 
     useEffect(() => {
-        const { phone, facebook, instagram, tiktok } = contact
-
-        setPhoneInpValue(phone)
-        setFacebookInpValue(facebook)
-        setInstaInpValue(instagram)
-        setTiktokInpValue(tiktok)
+        const fetchApi = async () => {
+            const result = await contactServices.getContact()
+            setPhoneInpValue(result.phone)
+            setFacebookInpValue(result.facebook)
+            setMessengerInpValue(result.messenger)
+            setInstaInpValue(result.instagram)
+            setTiktokInpValue(result.tiktok)
+        }
+        fetchApi()
     }, [])
+
+    useEffect(() => {
+        const removeNotification = setTimeout(() => {
+            setMessage('')
+            setNotificationType('')
+        }, 5000)
+
+        return () => clearTimeout(removeNotification)
+    }, [message])
 
     const handleChangePhoneValue = e => {
         setPhoneInpValue(e.target.value)
@@ -41,6 +51,12 @@ function AdminContact() {
     const handleChangeFacebookValue = e => {
         setFacebookInpValue(e.target.value)
         updateData.facebook = e.target.value
+        setSomethingChange(true)
+    }
+
+    const handleChangeMessengerValue = e => {
+        setMessengerInpValue(e.target.value)
+        updateData.messenger = e.target.value
         setSomethingChange(true)
     }
 
@@ -57,7 +73,18 @@ function AdminContact() {
     }
 
     const handleSaveData = () => {
-        console.log(updateData)
+        const fetchApi = async () => {
+            const result = await contactServices.putContact(updateData)
+            if (result) {
+                setMessage('Cập nhật thành công')
+                setNotificationType('success')
+            } else {
+                setMessage('Cập nhật thất bại. Vui lòng thử lại')
+                setNotificationType('error')
+            }
+            setSomethingChange(false)
+        }
+        fetchApi()
     }
 
     return (
@@ -89,6 +116,18 @@ function AdminContact() {
                                     placeholder="Nhập id Facebook"
                                     value={facebookInpValue}
                                     onChange={handleChangeFacebookValue}
+                                />
+                            </div>
+                        </div>
+                        <div className={cx('form-group')}>
+                            <label>Messenger:</label>
+                            <div className={cx('inp')}>
+                                <RiMessengerLine className={cx('icon')} />
+                                <input
+                                    type='text'
+                                    placeholder="Nhập id Messenger"
+                                    value={messengerInpValue}
+                                    onChange={handleChangeMessengerValue}
                                 />
                             </div>
                         </div>
@@ -127,6 +166,7 @@ function AdminContact() {
                     <Button disable>Lưu tất cả</Button>
                 }
             </div>
+            {message && <AdminNotification type={notificationType} title={message} />}
         </div>
     )
 }

@@ -3,52 +3,31 @@ import { useEffect, useRef, useState } from "react"
 import LayoutCard from "~/components/LayoutCard"
 import { useStringToPath } from "~/hooks"
 import styles from './AdminTag.module.scss'
+import * as tagService from '~/services/tagServices.js'
 
 const cx = classNames.bind(styles)
 
-const tagsArr = [
-    {
-        path: 'lao',
-        name: 'Lào'
-    },
-    {
-        path: 'luang-prabang',
-        name: 'Luang Prabang'
-    },
-    {
-        path: 'du-lich',
-        name: 'du lịch'
-    },
-    {
-        path: 'thanh-binh',
-        name: 'Thanh Bình'
-    },
-    {
-        path: 've-que',
-        name: 'về quê'
-    },
-    {
-        path: 'ban-da-biet',
-        name: 'bạn đã biết'
-    },
-    {
-        path: 'thu-choi',
-        name: 'thú chơi'
-    }
-]
-
 function AdminTag() {
-    const [tags, setTags] = useState(tagsArr)
+    const [tags, setTags] = useState([])
     const [createValue, setCreateValue] = useState('')
     const [updateTagInp, setUpdateTagInp] = useState(false)
     const [updateValue, setUpdateValue] = useState('')
     const [currentTag, setCurrentTag] = useState(0)
+    const [reload, setReload] = useState(true)
 
     const createInp = useRef()
     const updateRef = useRef()
 
     const { path: pathCreate, setPath: setPathCreate } = useStringToPath(createValue)
     const { path: pathUpdate, setPath: setPathUpdate } = useStringToPath(updateValue)
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const tagRes = await tagService.getTags()
+            setTags(tagRes)
+        }
+        fetchApi()
+    }, [reload])
 
     useEffect(() => {
         setPathCreate(createValue)
@@ -60,11 +39,14 @@ function AdminTag() {
 
     const handleCreateTag = () => {
         if (createValue) {
-            const newTag = {
-                path: pathCreate,
-                name: createValue
+            const fetchApi = async () => {
+                await tagService.createTag([{
+                    path: pathCreate,
+                    name: createValue
+                }])
             }
-            setTags(prev => [newTag, ...prev])
+            fetchApi()
+            setReload(!reload)
             setCreateValue('')
         }
     }
@@ -72,8 +54,11 @@ function AdminTag() {
     const handleDeleteTagClick = (id, name) => {
         const confirm = window.confirm(`Bạn có chắc chắn muốn xóa tag: ${name}`)
         if (confirm) {
-            tags.splice(id, 1)
-            setTags([...tags])
+            const fetchApi = async () => {
+                await tagService.deleteTag(id)
+            }
+            fetchApi()
+            setReload(!reload)
         }
     }
 
@@ -85,9 +70,14 @@ function AdminTag() {
     }
 
     const handleUpdateTag = () => {
-        tags[currentTag].name = updateValue
-        tags[currentTag].path = pathUpdate
-        setTags([...tags])
+        const fetchApi = async () => {
+            await tagService.updateTag(currentTag, {
+                name: updateValue,
+                path: pathUpdate
+            })
+        }
+        fetchApi()
+        setReload(!reload)
         setUpdateTagInp(false)
     }
 
@@ -118,8 +108,8 @@ function AdminTag() {
                             <div className={cx('tag')}>
                                 <span className={cx('tag-title')}>{tag.name}</span>
                                 <div className={cx('tag-actions')}>
-                                    <span className={cx('update-btn')} onClick={() => handleUpdateTagClick(index, tag.name)}>Sửa</span>
-                                    <span className={cx('delete-btn')} onClick={() => handleDeleteTagClick(index, tag.name)}>Xóa</span>
+                                    <span className={cx('update-btn')} onClick={() => handleUpdateTagClick(tag._id, tag.name)}>Sửa</span>
+                                    <span className={cx('delete-btn')} onClick={() => handleDeleteTagClick(tag._id, tag.name)}>Xóa</span>
                                 </div>
                             </div>
                         </div>

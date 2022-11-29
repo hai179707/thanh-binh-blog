@@ -6,11 +6,11 @@ import useDateFormat from '~/hooks/useDateFormat'
 const cx = classNames.bind(styles)
 
 function MessageItem({ data }) {
-    const date = useDateFormat(data.createAt)
+    const date = useDateFormat(data.createdAt)
 
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('name')}><span>{data.name}</span><span className={cx('email')}>{`(${data.email})`}</span></div>
+            <div className={cx('name')}><span>{data.name}</span><span className={cx('email')}>{`(${data.phone})`}</span></div>
             <div className={cx('message')}>{data.message}</div>
             <div className={cx('date')}>{date}</div>
         </div>

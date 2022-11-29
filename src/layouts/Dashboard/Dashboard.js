@@ -8,13 +8,21 @@ import { NavLink } from 'react-router-dom'
 import config from '~/config'
 import { RiFileCloudLine, RiInformationLine, RiPagesLine } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
+import * as totalService from '~/services/totalServices.js'
 
 const cx = classNames.bind(styles)
 
 function Dashboard({ children }) {
     const [smallDevice, setSmallDevice] = useState(window.innerWidth <= 768)
+    const [total, setTotal] = useState({})
 
     useEffect(() => {
+        const fetchApi = async () => {
+            const totalRes = await totalService.getTotal()
+            setTotal(totalRes)
+        }
+        fetchApi()
+
         const handleResize = () => {
             const windowWidth = window.innerWidth
             setSmallDevice(windowWidth <= 768)
@@ -25,7 +33,7 @@ function Dashboard({ children }) {
         return () => (
             window.removeEventListener('resize', handleResize)
         )
-    })
+    }, [])
 
     return (
         <div className={cx('wrapper')}>
@@ -48,13 +56,13 @@ function Dashboard({ children }) {
                             </div>
                             <ul className={cx('nav-items')}>
                                 <li className={cx('nav-item')}>
-                                    <NavLink to={config.routes.adminPost} className={nav => cx('nav-link', { active: nav.isActive })}>Bài viết</NavLink>
+                                    <NavLink to={config.routes.adminPost} className={nav => cx('nav-link', { active: nav.isActive })}>{`Bài viết (${total.post})`}</NavLink>
                                 </li>
                                 <li className={cx('nav-item')}>
-                                    <NavLink to={config.routes.adminCategory} className={nav => cx('nav-link', { active: nav.isActive })}>Categories</NavLink>
+                                    <NavLink to={config.routes.adminCategory} className={nav => cx('nav-link', { active: nav.isActive })}>{`Categories (${total.category})`}</NavLink>
                                 </li>
                                 <li className={cx('nav-item')}>
-                                    <NavLink to={config.routes.adminTag} className={nav => cx('nav-link', { active: nav.isActive })}>Tags</NavLink>
+                                    <NavLink to={config.routes.adminTag} className={nav => cx('nav-link', { active: nav.isActive })}>{`Tags (${total.tag})`}</NavLink>
                                 </li>
                             </ul>
                         </div>
@@ -71,7 +79,7 @@ function Dashboard({ children }) {
                                     <NavLink to={config.routes.adminContact} className={nav => cx('nav-link', { active: nav.isActive })}>Liên hệ của tôi</NavLink>
                                 </li>
                                 <li className={cx('nav-item')}>
-                                    <NavLink to={config.routes.adminMessage} className={nav => cx('nav-link', { active: nav.isActive })}>Lời nhắn</NavLink>
+                                    <NavLink to={config.routes.adminMessage} className={nav => cx('nav-link', { active: nav.isActive })}>{`Lời nhắn (${total.message})`}</NavLink>
                                 </li>
                             </ul>
                         </div>

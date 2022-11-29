@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import Tippy from "@tippyjs/react/headless"
 import classNames from "classnames/bind"
 import { useState } from "react"
@@ -7,7 +8,7 @@ import styles from './AdminPageAndLimitControl.module.scss'
 
 const cx = classNames.bind(styles)
 
-function AdminPageAndLimitControl() {
+function AdminPageAndLimitControl({ nextPage, prevPage, setLimit }) {
     const location = useLocation()
     const navigate = useNavigate()
     const page = Number(new URLSearchParams(location.search).get('page'))
@@ -30,6 +31,7 @@ function AdminPageAndLimitControl() {
             console.log('prev')
             setCurrPage(currPage - 1)
             changeQueryUrl(currPage - 1, limitPost)
+            prevPage()
         }
     }
 
@@ -38,11 +40,13 @@ function AdminPageAndLimitControl() {
             console.log('next')
             setCurrPage(currPage + 1)
             changeQueryUrl(currPage + 1, limitPost)
+            nextPage()
         }
     }
 
     const handleChangeLimit = limit => {
         setLimitPost(limit)
+        setLimit(limit)
         changeQueryUrl(currPage, limit)
     }
 
@@ -68,11 +72,17 @@ function AdminPageAndLimitControl() {
             </div>
             <div className={cx('navigation')}>
                 <RiArrowLeftLine className={cx('prev')} title='Trang trước' onClick={handlePrevPage} />
-                <div className={cx('current')}>{`${currPage}/9`}</div>
+                <div className={cx('current')}>{`${currPage}`}</div>
                 <RiArrowRightLine className={cx('next')} title='Trang sau' onClick={handleNextPage} />
             </div>
         </div>
     )
+}
+
+AdminPageAndLimitControl.propTypes = {
+    nextPage: PropTypes.func,
+    prevPage: PropTypes.func,
+    setLimit: PropTypes.func
 }
 
 export default AdminPageAndLimitControl

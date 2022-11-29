@@ -1,6 +1,7 @@
 .wrapper {
     display: flex;
     padding-block: 0.9rem;
+    font-size: 1.5rem;
     border-bottom: 1px solid rgba($color: #000000, $alpha: 0.05);
     gap: 1rem;
 
@@ -10,7 +11,7 @@
 }
 
 .name {
-    min-width: 25%;
+    width: 25%;
     font-weight: 500;
     display: flex;
     flex-wrap: wrap;
