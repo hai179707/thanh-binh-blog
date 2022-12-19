@@ -6,7 +6,7 @@ import useDateFormat from '~/hooks/useDateFormat'
 const cx = classNames.bind(styles)
 
 function MessageItem({ data }) {
-    const date = useDateFormat(data.createdAt)
+    const date = useDateFormat(data.updatedAt)
 
     return (
         <div className={cx('wrapper')}>

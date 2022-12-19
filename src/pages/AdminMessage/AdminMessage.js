@@ -7,6 +7,7 @@ import LayoutCard from "~/components/LayoutCard"
 import styles from './AdminMessage.module.scss'
 import AdminPageAndLimitControl from "~/components/AdminPageAndLimitControl"
 import * as messageService from '~/services/messageServices.js'
+import { useDebounce } from "~/hooks"
 
 const cx = classNames.bind(styles)
 
@@ -18,6 +19,8 @@ function AdminMessage() {
 
     const filterInp = useRef()
 
+    const debouncedValue = useDebounce(filterValue, 600)
+
     useEffect(() => {
         const fetchApi = async () => {
             const result = await messageService.getMessage(page, limit)
@@ -26,9 +29,16 @@ function AdminMessage() {
         fetchApi()
     }, [page, limit])
 
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await messageService.getMessage(page, limit, debouncedValue)
+            setMessages(result)
+        }
+        fetchApi()
+    }, [page, limit, debouncedValue])
+
     const handleFilterInpChange = e => {
         setFilterValue(e.target.value)
-        // Logic filter sử dung hook debounce
     }
 
     const handleClearFilterInp = () => {

@@ -23,12 +23,14 @@ function AdminPost() {
 
     const debouncedValue = useDebounce(filterValue, 500)
 
+    const fetchApi = async () => {
+        const result = await postServices.getAllPost(page, limit)
+        setPosts(result)
+    }
+
     useEffect(() => {
-        const fetchApi = async () => {
-            const result = await postServices.getAllPost(page, limit)
-            setPosts(result)
-        }
         fetchApi()
+        // eslint-disable-next-line
     }, [page, limit])
 
     useEffect(() => {
@@ -37,7 +39,7 @@ function AdminPost() {
             setPosts(result)
         }
         fetchApi()
-    }, [debouncedValue])
+    }, [debouncedValue, limit, page])
 
     const handleFilterInpChange = e => {
         setFilterValue(e.target.value)
@@ -87,7 +89,7 @@ function AdminPost() {
                     </div>
                     <div className={cx('content')}>
                         {posts.map(post => (
-                            <AdminPostListItem data={post} key={post._id} />
+                            <AdminPostListItem data={post} key={post._id} action={fetchApi} />
                         ))}
                     </div>
                 </LayoutCard>

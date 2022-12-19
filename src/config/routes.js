@@ -1,10 +1,7 @@
 const routes = {
     home: '/',
     category: '/category',
-    chuyenChoi: '/category/chuyen-choi',
-    chuyenSong: '/category/chuyen-song',
-    chuyenHoc: '/category/chuyen-hoc',
-    chuyenLam: '/category/chuyen-lam',
+    categoryPost: '/category/:categoryId',
     post: '/posts/:postPath',
     posts: '/posts',
     tag: '/tag/:tagPath',

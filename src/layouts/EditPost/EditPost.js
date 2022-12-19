@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useEffect, useRef, useState } from "react"
 import classNames from "classnames/bind"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import JoditEditor from "jodit-react"
 import Tippy from "@tippyjs/react/headless"
 import { RiArrowRightSLine, RiArrowDropDownLine, RiUploadLine } from "react-icons/ri"
@@ -13,95 +13,39 @@ import TagGroup from "~/components/TagGroup"
 import { useStringToPath } from "~/hooks"
 import './CustomTextEditor.scss'
 import styles from './EditPost.module.scss'
+import { getCategory } from '~/services/categoryServices'
+import { getTags, createTag } from '~/services/tagServices'
+import * as imageService from '~/services/imageServices.js'
+import * as postServices from '~/services/postServices'
+import AdminNotification from '~/components/AdminNotification'
 
 const cx = classNames.bind(styles)
 
-const tagsArr = [
-    {
-        path: 'nhung-nguoi-ban',
-        name: 'những người bạn'
-    },
-    {
-        path: 'thanh-binh',
-        name: 'Thanh Bình'
-    },
-    {
-        path: 'thanh-hai',
-        name: 'Thanh Hải'
-    }
-]
-
-const categoriesArr = [
-    {
-        path: 'chuyenchoi',
-        name: 'Chuyện chơi'
-    },
-    {
-        path: 'chuyenhoc',
-        name: 'Chuyện học'
-    },
-    {
-        path: 'chuyensong',
-        name: 'Chuyện sống'
-    },
-    {
-        path: 'chuyenlam',
-        name: 'Chuyện làm'
-    }
-]
-
 function EditPost({ data }) {
-    const { postId } = useParams()
-
-    let _public = true
-    let _tags = []
-    let _choosenCategory = categoriesArr[0].name
-    let _imageUrl = ''
-    let _title = ''
-    let _content = ''
-    let _description = ''
-    let _path = ''
-
-    if (data) {
-        const {
-            title: __title,
-            content: __content,
-            description: __description,
-            path: __path,
-            public: __public,
-            tags: __tags,
-            category: __category,
-            imageUrl: __imageUrl
-        } = data
-
-        _title = __title
-        _content = __content
-        _description = __description
-        _path = __path
-        _public = __public
-        _tags = __tags
-        _choosenCategory = __category.name
-        _imageUrl = __imageUrl
-    }
-
     const editor = useRef(null)
-    const [title, setTitle] = useState(_title)
-    const [desc, setDesc] = useState(_description)
-    const [image, setImage] = useState(_imageUrl)
-    const [imageFile, setImageFile] = useState()
-    const [content, setContent] = useState(_content)
-    const [publicOption, setPublicOption] = useState(_public)
-    const [tags, setTags] = useState(_tags)
-    const [categories, setCategories] = useState(categoriesArr)
-    const [choosenCategory, setChoosenCategory] = useState(_choosenCategory)
+    const [title, setTitle] = useState(data ? data.title : '')
+    const [desc, setDesc] = useState(data ? data.description : '')
+    const [image, setImage] = useState(data ? data.imageUrl : '')
+    const [content, setContent] = useState(data ? data.content : '')
+    const [publicOption, setPublicOption] = useState(data ? data.public : true)
+    const [tags, setTags] = useState(data ? data.tags : [])
+    const [choosenCategory, setChoosenCategory] = useState(data ? data.category : '')
+
+    const [categories, setCategories] = useState([])
+    const [allTag, setAllTags] = useState([])
     const [showCategories, setShowCategories] = useState(false)
     const [createCategory, setCreateCategory] = useState(false)
     const [createCategoryValue, setCreateCategoryValue] = useState('')
     const [tagValue, setTagValue] = useState('')
+    const [imageFile, setImageFile] = useState()
+    const [message, setMessage] = useState('')
+    const [notificationType, setNotificationType] = useState('')
 
-    const { path: postPath, setPath: setPostPath } = useStringToPath(_path)
+    const { path: postPath, setPath: setPostPath } = useStringToPath(data ? data.path : '')
     const { path: tagPath, setPath: setTagPath } = useStringToPath()
     const { path: categoryPath, setPath: setCategoryPath } = useStringToPath()
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         setPostPath(title)
@@ -116,14 +60,29 @@ function EditPost({ data }) {
     }, [createCategoryValue, setCategoryPath])
 
     useEffect(() => {
+        const clearMessage = setTimeout(() => {
+            setMessage('')
+            setNotificationType('')
+        }, 5000)
+
+        return () => clearTimeout(clearMessage)
+    }, [message])
+
+    useEffect(() => {
         return () => {
             image && URL.revokeObjectURL(image.preview)
         }
     }, [image])
 
-    const handleChangeTitle = e => {
-        setTitle(e.target.value)
-    }
+    useEffect(() => {
+        const fetchApi = async () => {
+            const cateRes = await getCategory()
+            setCategories(cateRes)
+            const tagRes = await getTags()
+            setAllTags(tagRes)
+        }
+        fetchApi()
+    }, [])
 
     const handlePreviewImage = e => {
         const file = e.target.files[0]
@@ -134,11 +93,21 @@ function EditPost({ data }) {
 
     const handleKeyDown = e => {
         if (e.key === 'Enter' && e.target.value) {
-            const newTag = {
-                path: tagPath,
-                name: e.target.value
+            const currTag = allTag.find(tag => tag.name === e.target.value)
+            if (!currTag) {
+                const fetchApi = async () => {
+                    const tagRes = await createTag([{
+                        path: tagPath,
+                        name: e.target.value
+                    }])
+                    setTags(prev => [...prev, ...tagRes])
+                }
+                fetchApi()
             }
-            setTags(prev => [...prev, newTag])
+            else {
+                setTags(prev => [...prev, currTag])
+            }
+
             setTagValue('')
         }
     }
@@ -183,22 +152,40 @@ function EditPost({ data }) {
             imageUrl: image,
             content: content,
             public: publicOption,
-            category: choosenCategory,
-            tags: tags
-        }
-
-        if (imageFile) {
-            updateData.image = imageFile
-            updateData.imageUrl = ''
+            category: choosenCategory._id,
+            tags: tags.map(tag => tag._id)
         }
 
         if (data) {
-            console.log('Update post:', postId)
-            console.log('Data', updateData)
+            const fetchApi = async () => {
+                if (imageFile) {
+                    const formData = new FormData()
+                    formData.append('uploadImage', imageFile)
+                    const imageUrl = await imageService.postImage(formData)
+                    updateData.imageUrl = imageUrl.url
+                }
+
+                await postServices.updatePost(data._id, updateData)
+
+                setMessage('Cập nhật bài viết thành công!')
+                setNotificationType('success')
+            }
+            fetchApi()
         }
         else {
-            console.log('Create a new post')
-            console.log('Data', updateData)
+            const fetchApi = async () => {
+                const formData = new FormData()
+                formData.append('uploadImage', imageFile)
+                const imageUrl = await imageService.postImage(formData)
+                updateData.imageUrl = imageUrl.url
+
+                const res = await postServices.createPost(updateData)
+                navigate('/admin/web/posts/' + res._id)
+
+                setMessage('Tạo bài viết thành công!')
+                setNotificationType('success')
+            }
+            fetchApi()
         }
     }
 
@@ -208,7 +195,7 @@ function EditPost({ data }) {
                 <Link to={config.routes.adminPost} className={cx('header-title')}>Danh sách bài viết</Link>
                 <RiArrowRightSLine className={cx('header-icon')} />
                 <div className={cx('header-subtitle')}>Tạo bài viết mới</div>
-                <Button primary title='Lưu' />
+                <Button primary title='Lưu' onClick={handleUpdatePost} />
             </div>
             <div className={cx('container')}>
                 <div className={cx('main-content')}>
@@ -219,7 +206,7 @@ function EditPost({ data }) {
                             placeholder="Tiêu đề"
                             className={cx('form-inp')}
                             value={title}
-                            onChange={handleChangeTitle}
+                            onChange={e => setTitle(e.target.value)}
                         />
                     </div>
                     <div className={cx('form-group', 'editor-container')}>
@@ -290,14 +277,14 @@ function EditPost({ data }) {
                         </div>
                     </SideItemWrapper>
                     <SideItemWrapper title='Chuyên mục'>
-                        <div className={cx('choosen-category', { highlight: showCategories })} onClick={() => setShowCategories(!showCategories)}><span>{choosenCategory}</span><RiArrowDropDownLine className={cx('category-icon')} /></div>
+                        <div className={cx('choosen-category', { highlight: showCategories })} onClick={() => setShowCategories(!showCategories)}><span>{choosenCategory.name}</span><RiArrowDropDownLine className={cx('category-icon')} /></div>
                         {showCategories &&
                             <ul className={cx('categories')}>
                                 {categories.map((category, index) => (
                                     <li
                                         key={index}
-                                        className={cx('category', { choosen: category.name === choosenCategory })}
-                                        onClick={() => handleChooseCategory(category.name)}
+                                        className={cx('category', { choosen: category.name === choosenCategory.name })}
+                                        onClick={() => handleChooseCategory(category)}
                                     >
                                         {category.name}
                                     </li>
@@ -321,7 +308,7 @@ function EditPost({ data }) {
                             render={attrs => (
                                 <div className={cx('suggest-tag-wrapper')} tabIndex="-1" {...attrs}>
                                     <ul className={cx('suggest-tags')}>
-                                        {tagsArr.map((tag, index) => (
+                                        {allTag.map((tag, index) => (
                                             <li
                                                 key={index}
                                                 className={cx('suggest-tag', { disable: tags.some(newtag => newtag.name === tag.name) })}
@@ -350,6 +337,7 @@ function EditPost({ data }) {
             <div className={cx('footer')}>
                 <Button primary title='Lưu' onClick={handleUpdatePost} />
             </div>
+            {message && <AdminNotification type={notificationType} title={message} />}
         </div>
     )
 }

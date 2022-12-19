@@ -13,7 +13,6 @@ function AdminTag() {
     const [updateTagInp, setUpdateTagInp] = useState(false)
     const [updateValue, setUpdateValue] = useState('')
     const [currentTag, setCurrentTag] = useState(0)
-    const [reload, setReload] = useState(true)
 
     const createInp = useRef()
     const updateRef = useRef()
@@ -27,7 +26,7 @@ function AdminTag() {
             setTags(tagRes)
         }
         fetchApi()
-    }, [reload])
+    }, [])
 
     useEffect(() => {
         setPathCreate(createValue)
@@ -44,9 +43,11 @@ function AdminTag() {
                     path: pathCreate,
                     name: createValue
                 }])
+
+                const tagRes = await tagService.getTags()
+                setTags(tagRes)
             }
             fetchApi()
-            setReload(!reload)
             setCreateValue('')
         }
     }
@@ -56,9 +57,11 @@ function AdminTag() {
         if (confirm) {
             const fetchApi = async () => {
                 await tagService.deleteTag(id)
+
+                const tagRes = await tagService.getTags()
+                setTags(tagRes)
             }
             fetchApi()
-            setReload(!reload)
         }
     }
 
@@ -75,9 +78,10 @@ function AdminTag() {
                 name: updateValue,
                 path: pathUpdate
             })
+            const tagRes = await tagService.getTags()
+            setTags(tagRes)
         }
         fetchApi()
-        setReload(!reload)
         setUpdateTagInp(false)
     }
 

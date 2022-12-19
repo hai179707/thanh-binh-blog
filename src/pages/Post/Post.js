@@ -1,60 +1,43 @@
 import classNames from "classnames/bind"
 import { useEffect, useState } from "react"
 import { IoMdPricetag } from "react-icons/io"
-import { RiArrowLeftLine, RiArrowRightLine } from "react-icons/ri"
 import { Link, useParams } from "react-router-dom"
 import PostGroupWrapper from "~/components/PostGroupWrapper"
 import PostItem from "~/components/PostItem"
 import PostWrapper from "~/components/PostWrapper"
+import { useDateFormat } from "~/hooks"
+import { getPost } from "~/services/postServices"
 import styles from './Post.module.scss'
-import { posts } from "./postList.js"
 
 const cx = classNames.bind(styles)
 
 function Post() {
     const { postPath } = useParams()
+    // eslint-disable-next-line
     const [currentPath, setCurrentPath] = useState(postPath)
     const [relatedPost, setRelatedPost] = useState(JSON.parse(localStorage.getItem('relatedPost')) || [])
     const [post, setPost] = useState()
     const [createTime, setCreateTime] = useState('')
-    const [nextPost, setNextPost] = useState(currentPath)
-    const [prevPost, setPrevPost] = useState(currentPath)
+
+    const date = useDateFormat(createTime)
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        const result = posts.find(post => post.post.path === currentPath)
-        if (result) {
-            setPost(result.post)
+        const fetchApi = async () => {
+            const res = await getPost(postPath)
+            setPost(res)
+            setCreateTime(res.updatedAt)
 
-            let related = []
-            relatedPost.some(post => post.path === result.post.path)
-                ?
-                related = relatedPost
-                :
-                related = [...relatedPost, result.post]
-
-            if (related.length > 4) {
-                related = related.slice(-4)
+            if (!relatedPost.some(post => post._id === res._id)) {
+                if (relatedPost.length >= 3) {
+                    relatedPost.splice(0, 1)
+                }
+                setRelatedPost(prev => [...prev, res])
+                localStorage.setItem('relatedPost', JSON.stringify(relatedPost))
             }
-
-            setRelatedPost(related)
-
-            localStorage.setItem('relatedPost', JSON.stringify(relatedPost))
-
-            const nextPost = posts.find(post => post.id === result.id + 1)
-            if (nextPost) setNextPost(nextPost.post.path)
-
-            const prevPost = posts.find(post => post.id === result.id - 1)
-            if (prevPost) setPrevPost(prevPost.post.path)
         }
-    }, [currentPath, relatedPost])
-
-    useEffect(() => {
-        if (post) {
-            const create = new Date(post.createAt)
-            setCreateTime(`${create.getDate()}/${create.getMonth() + 1}/${create.getFullYear()}`)
-        }
-    }, [post])
+        fetchApi()
+    }, [postPath, relatedPost])
 
     return (
         <PostWrapper>
@@ -67,7 +50,7 @@ function Post() {
                         <div className={cx('header')}>
                             <Link to={'/category/' + post.category.path} className={cx('category')}>{post.category.name}</Link>
                             <h2 className={cx('title')}>{post.title}</h2>
-                            <p className={cx('date')}>{createTime}</p>
+                            <p className={cx('date')}>{date}</p>
                         </div>
                         <div className={cx('content-area')} dangerouslySetInnerHTML={{ __html: post.content }}></div>
                         <div className={cx('tags')}>
@@ -76,22 +59,6 @@ function Post() {
                                 <Link key={index} to={`/tag/${tag.path}`} className={cx('tag')}>{`#${tag.name}`}</Link>
                             ))}
                         </div>
-                    </div>
-                    <div className={cx('navigation')}>
-                        <Link
-                            to={`/posts/${prevPost}`}
-                            className={cx('prev', { disable: prevPost === currentPath })}
-                            onClick={() => setCurrentPath(prevPost)}
-                        >
-                            <span><RiArrowLeftLine /></span><span>Bài trước</span>
-                        </Link>
-                        <Link
-                            to={`/posts/${nextPost}`}
-                            className={cx('next', { disable: nextPost === currentPath })}
-                            onClick={() => setCurrentPath(nextPost)}
-                        >
-                            <span>Bài tiếp</span><span><RiArrowRightLine /></span>
-                        </Link>
                     </div>
                     {relatedPost
                         &&

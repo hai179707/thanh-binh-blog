@@ -8,21 +8,24 @@ import Divide from '~/components/Divide'
 import PostItem from '~/components/PostItem'
 import { useEffect, useState } from 'react'
 import SeeAllBtn from '~/components/SeeAllBtn'
+import { getSuggestedPostOfCategory } from '~/services/postServices'
+import { getACategory } from '~/services/categoryServices'
 
 const cx = classNames.bind(styles)
 
-function BlogSection({ data }) {
-    const [list, setList] = useState(window.innerWidth <= 1400 && window.innerWidth > 762 ? data.suggest.slice(0, 3) : data.suggest)
+function BlogSection({ path }) {
+    const [list, setList] = useState([])
+    const [cate, setCate] = useState()
 
     useEffect(() => {
         const handleResize = () => {
             const windowWidth = window.innerWidth
 
             if (windowWidth <= 1400 && windowWidth > 762) {
-                setList(data.suggest.slice(0, 3))
+                setList(list.slice(0, 3))
             }
             else {
-                setList(data.suggest)
+                setList(list)
             }
         }
 
@@ -33,14 +36,31 @@ function BlogSection({ data }) {
         )
     })
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        const fetchApi = async () => {
+            const cateRes = await getACategory(path)
+            setCate(cateRes)
+            const res = await getSuggestedPostOfCategory(path)
+            window.innerWidth <= 1400 && window.innerWidth > 762
+                ?
+                setList(res.slice(0, 3))
+                :
+                setList(res)
+        }
+        fetchApi()
+    }, [path])
+
     return (
         <SectionWrapper>
-            <div className={cx('text')}>
-                <Link to={data.path} className={cx('title')}>{data.title}</Link>
-                <Divide primary rounded width='50px' height='1px' />
-                <div className={cx('subtitle')}>{data.subtitle}</div>
-                <SeeAllBtn path={data.path} className={cx('see-all')} />
-            </div>
+            {cate &&
+                <div className={cx('text')}>
+                    <Link to={cate.path} className={cx('title')}>{cate.name}</Link>
+                    <Divide primary rounded width='50px' height='1px' />
+                    {/* <div className={cx('subtitle')}>{data.subtitle}</div> */}
+                    <SeeAllBtn path={'/category/' + cate.path} className={cx('see-all')} />
+                </div>
+            }
             <div className={cx('container')}>
                 <div className={cx('content')}>
                     {list.map((post, index) => (
@@ -53,7 +73,7 @@ function BlogSection({ data }) {
 }
 
 BlogSection.propTypes = {
-    data: PropTypes.object.isRequired,
+    data: PropTypes.string,
 }
 
 export default BlogSection

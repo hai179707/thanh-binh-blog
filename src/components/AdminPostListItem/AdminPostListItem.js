@@ -12,7 +12,7 @@ import AdminNotification from '../AdminNotification'
 
 const cx = classNames.bind(styles)
 
-function AdminPostListItem({ data }) {
+function AdminPostListItem({ data, action }) {
     const [message, setMessage] = useState('')
     const [notificationType, setNotificationType] = useState('')
     const [isPublic, setPublic] = useState(data.public)
@@ -36,11 +36,11 @@ function AdminPostListItem({ data }) {
             if (result) {
                 setMessage('Xuất bản bài viết thành công')
                 setNotificationType('success')
+                setPublic(true)
             } else {
                 setMessage('Xuất bản bài viết thất bại. Vui lòng thử lại')
                 setNotificationType('error')
             }
-            setPublic(true)
         }
         fetchApi()
     }
@@ -53,11 +53,11 @@ function AdminPostListItem({ data }) {
             if (result) {
                 setMessage('Tạm dừng bài viết thành công')
                 setNotificationType('success')
+                setPublic(false)
             } else {
                 setMessage('Tạm dừng bài viết thất bại. Vui lòng thử lại')
                 setNotificationType('error')
             }
-            setPublic(false)
         }
         fetchApi()
     }
@@ -70,11 +70,11 @@ function AdminPostListItem({ data }) {
                 if (result) {
                     setMessage('Xóa bài viết thành công')
                     setNotificationType('success')
+                    action()
                 } else {
                     setMessage('Xóa bài viết thất bại. Vui lòng thử lại')
                     setNotificationType('error')
                 }
-                window.location.reload()
             }
             fetchApi()
         }
@@ -113,7 +113,8 @@ function AdminPostListItem({ data }) {
 }
 
 AdminPostListItem.propTypes = {
-    data: PropTypes.object
+    data: PropTypes.object,
+    action: PropTypes.func
 }
 
 export default AdminPostListItem

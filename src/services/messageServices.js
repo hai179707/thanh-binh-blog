@@ -1,11 +1,12 @@
 import * as httpRequest from '~/utils/httpRequest'
 
-export const getMessage = async (page = 1, limit = 20) => {
+export const getMessage = async (page = 1, limit = 20, filter) => {
     try {
         const res = await httpRequest.get('/messages', {
             params: {
                 page,
-                limit
+                limit,
+                filter
             }
         })
         return res

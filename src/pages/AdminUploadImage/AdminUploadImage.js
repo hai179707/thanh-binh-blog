@@ -3,30 +3,36 @@ import { useEffect, useRef, useState } from "react"
 import { RiAddCircleLine, RiCloseCircleFill, RiDownload2Line, RiSearch2Line, RiUploadLine } from "react-icons/ri"
 import { MdOutlineContentCopy } from "react-icons/md"
 import { HiOutlineTrash } from "react-icons/hi"
-import images from "~/assets/images"
 import AdminPageAndLimitControl from "~/components/AdminPageAndLimitControl"
 import LayoutCard from "~/components/LayoutCard"
 import styles from './AdminUploadImage.module.scss'
 import CopyToClipboard from "react-copy-to-clipboard"
-import config from "~/config"
 import Modal from "~/components/Modal"
-import { useModal } from "~/hooks"
+import { useDebounce, useModal } from "~/hooks"
+import * as imageService from '~/services/imageServices.js'
+import AdminNotification from "~/components/AdminNotification"
 
 const cx = classNames.bind(styles)
 
 function AdminUploadImage() {
+    const [imageList, setImageList] = useState([])
     const [filterValue, setFilterValue] = useState('')
     const [copied, setCopied] = useState(false)
+    const [limit, setLimit] = useState(20)
+    const [page, setPage] = useState(1)
     // const [currId, setCurrId] = useState(0)
     const [image, setImage] = useState('')
-    // eslint-disable-next-line
-    const [imageFile, setImageFile] = useState()
+    const [choosenImage, setChoosenImage] = useState()
+    const [message, setMessage] = useState('')
+    const [notificationType, setNotificationType] = useState('')
 
     const { isShowing, toggle } = useModal()
     const { isShowing: isUpLoadShowing, toggle: uploadToggle } = useModal()
 
     const filterInp = useRef()
     const form = useRef()
+
+    const debouncedValue = useDebounce(filterValue, 600)
 
     useEffect(() => {
         setTimeout(() => {
@@ -40,16 +46,30 @@ function AdminUploadImage() {
         }
     }, [image])
 
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await imageService.getImage(page, limit)
+            setImageList(result)
+        }
+        fetchApi()
+    }, [page, limit])
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await imageService.getImage(page, limit, debouncedValue)
+            setImageList(result)
+        }
+        fetchApi()
+    }, [page, limit, debouncedValue])
+
     const handlePreviewImage = e => {
         const file = e.target.files[0]
-        setImageFile(file)
         file.preview = URL.createObjectURL(file)
         setImage(file.preview)
     }
 
     const handleFilterInpChange = e => {
         setFilterValue(e.target.value)
-        // Logic filter sử dung hook debounce
     }
 
     const handleClearFilterInp = () => {
@@ -57,31 +77,38 @@ function AdminUploadImage() {
         filterInp.current.focus()
     }
 
-    const handleShowImage = id => {
-        // setCurrId(id)
+    const handleShowImage = image => {
+        setChoosenImage(image)
         toggle()
     }
 
     const handleDeleteImage = id => {
         const confirm = window.confirm(`Bạn có chắc chắn muốn xóa ảnh này`)
         if (confirm) {
-            console.log('Xóa ảnh', id)
+            const fetchApi = async () => {
+                await imageService.deleteImage(id)
+                setMessage('Xóa hình ảnh thành công')
+                setNotificationType('success')
+                const result = await imageService.getImage(page, limit)
+                setImageList(result)
+            }
+            fetchApi()
         }
     }
 
     const handleSubmitForm = (e) => {
         e.preventDefault()
-        fetch('http://localhost:8000/api/upload', {
-            body: new FormData(e.target),
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-            .then(res => res.json())
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+        const fetchApi = async () => {
+            const imageUrl = await imageService.postImage(new FormData(e.target))
+            console.log(imageUrl.url)
+            uploadToggle()
+            setMessage('Tải hình ảnh thành công')
+            setNotificationType('success')
+            const result = await imageService.getImage(page, limit)
+            setImageList(result)
+            setImage('')
+        }
+        fetchApi()
     }
 
     return (
@@ -118,47 +145,58 @@ function AdminUploadImage() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td onClick={() => handleShowImage(/* image id */)}>
-                                <div className={cx('image-review')} style={{ backgroundImage: `url(${images.sidebarBg})` }}></div>
-                            </td>
-                            <td onClick={() => handleShowImage(/* image id */)}>
-                                <div>sidebar-bg.b648a2b9e05dc30d8639.jpg</div>
-                            </td>
-                            <td>
-                                <div>06/05/2022 09:58 SA</div>
-                            </td>
-                            <td>
-                                <div className={cx('action')}>
-                                    <CopyToClipboard text={config.rootPath + images.sidebarBg} onCopy={() => setCopied(true)}>
-                                        <div className={cx('copy-url')} title='Copy đường dẫn'><MdOutlineContentCopy /></div>
-                                    </CopyToClipboard>
-                                    <div className={cx('delete-image')} onClick={() => handleDeleteImage(/* image id */)}><HiOutlineTrash /></div>
-                                </div>
-                            </td>
-                        </tr>
+                        {imageList.map(image => (
+                            <tr key={image._id}>
+                                <td onClick={() => handleShowImage(image._id)}>
+                                    <div className={cx('image-review')} style={{ backgroundImage: `url(${image.url})` }}></div>
+                                </td>
+                                <td onClick={() => handleShowImage(image)}>
+                                    <div>{image.name.split('_')[1]}</div>
+                                </td>
+                                <td>
+                                    <div>{image.updatedAt.split('T')[0]}</div>
+                                </td>
+                                <td>
+                                    <div className={cx('action')}>
+                                        <CopyToClipboard text={image.url} onCopy={() => setCopied(true)}>
+                                            <div className={cx('copy-url')} title='Copy đường dẫn'><MdOutlineContentCopy /></div>
+                                        </CopyToClipboard>
+                                        <div className={cx('delete-image')} onClick={() => handleDeleteImage(image._id)}><HiOutlineTrash /></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </LayoutCard>
-            <AdminPageAndLimitControl />
+            <AdminPageAndLimitControl
+                nextPage={() => setPage(page + 1)}
+                prevPage={() => setPage(page - 1)}
+                setLimit={l => setLimit(l)}
+            />
             {copied && <div className={cx('copied')}>Đã sao chép đường dẫn</div>}
             <Modal
                 isShowing={isShowing}
                 hide={toggle}
             >
                 <div className={cx('modal-content')}>
-                    <div className={cx('image')}>
-                        <img src={images.sidebarBg} alt='' />
-                    </div>
-                    <div className={cx('modal-text')}>
-                        <div className={cx('left')}>
-                            <CopyToClipboard text={config.rootPath + images.sidebarBg} onCopy={() => setCopied(true)}>
-                                <div className={cx('modal-name')}>{'sidebar-bg.b648a2b9e05dc30d8639.jpg'.toUpperCase()}</div>
-                            </CopyToClipboard>
-                            <div className={cx('modal-time')}>06/05/2022 09:58 SA</div>
-                        </div>
-                        <a href={images.sidebarBg} download className={cx('download-btn')}><RiDownload2Line /></a>
-                    </div>
+                    {choosenImage &&
+                        <>
+                            <div className={cx('image')}>
+                                <img src={choosenImage.url} alt='' />
+                            </div>
+                            <div className={cx('modal-text')}>
+                                <div className={cx('left')}>
+                                    <CopyToClipboard text={choosenImage.url} onCopy={() => setCopied(true)}>
+                                        <div className={cx('modal-name')}>{choosenImage.name.split('_')[1].toUpperCase()}</div>
+                                    </CopyToClipboard>
+                                    <div className={cx('modal-time')}>{choosenImage.updatedAt.split('T')[0]}</div>
+                                </div>
+                                <a href={choosenImage.url} download className={cx('download-btn')}><RiDownload2Line /></a>
+                            </div>
+                        </>
+
+                    }
                 </div>
             </Modal>
             <Modal
@@ -186,11 +224,12 @@ function AdminUploadImage() {
                                     </label>
                                 </>
                             }
-                            <input type='file' name="image" id='choose-image-inp' className={cx('choose-image-inp')} onChange={handlePreviewImage} onClick={e => e.target.value = ''} />
+                            <input type='file' name='uploadImage' id='choose-image-inp' className={cx('choose-image-inp')} onChange={handlePreviewImage} onClick={e => e.target.value = ''} />
                         </div>
                     </form>
                 </div>
             </Modal>
+            {message && <AdminNotification type={notificationType} title={message} />}
         </div>
     )
 }

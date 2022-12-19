@@ -1,34 +1,25 @@
-import images from "~/assets/images"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import { EditPost } from "~/layouts"
 
+import { getPost } from '~/services/postServices'
+
 function UpdatePost() {
-    const post = {
-        _id: '637651812d92875fcd1cb3d4',
-        title: 'Thanh Bình và những người bạn trên đường!',
-        description: 'Thanh Bình và những người bạn trên đường!',
-        imageUrl: images.sidebarBg,
-        path: 'thanh-binh-va-nhung-nguoi-ban-tren-duong',
-        createAt: '2022-11-16T18:15:37.809+00:00',
-        content: '<p>Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!</p>',
-        public: false,
-        category: {
-            path: 'chuyenhoc',
-            name: 'Chuyện học'
-        },
-        tags: [
-            {
-                path: 'nhung-nguoi-ban',
-                name: 'những người bạn'
-            },
-            {
-                path: 'thanh-binh',
-                name: 'Thanh Bình'
-            }
-        ]
-    }
+    const { postId } = useParams()
+    const [post, setPost] = useState()
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await getPost(postId)
+            setPost(result)
+        }
+        fetchApi()
+    }, [postId])
 
     return (
-        <EditPost data={post} />
+        <>
+            {post && <EditPost data={post} />}
+        </>
     )
 }
 

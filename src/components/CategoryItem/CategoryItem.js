@@ -7,13 +7,11 @@ import SeeAllBtn from '~/components/SeeAllBtn'
 const cx = classNames.bind(styles)
 
 function CategoryItem({ data }) {
-    const { title, subtitle, path } = data
-
     return (
         <div className={cx('wrapper')}>
-            <h2 className={cx('title')}>{title}</h2>
-            <p className={cx('subtitle')}>{subtitle}</p>
-            <SeeAllBtn path={path} className={cx('see-all')} />
+            <h2 className={cx('title')}>{data.name}</h2>
+            {/* <p className={cx('subtitle')}>{subtitle}</p> */}
+            <SeeAllBtn path={data.path} className={cx('see-all')} />
         </div>
     )
 }
